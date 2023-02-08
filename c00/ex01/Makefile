@@ -1,8 +1,10 @@
-NAME		= MyAwsomePhoneBook
+NAME	= MyAwsomePhoneBook
 CC		= g++
-CFLAGS		= -Wall -Wextra -Werror -std=c++98 -pedantic
-CPP		= main.cpp 
-
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
+CPP		= main.cpp \
+		  PhoneBook.class.cpp \
+		  Contact.class.cpp \
+		  
 # ==============================================================================
 
 
