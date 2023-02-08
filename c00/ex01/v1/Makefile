@@ -1,8 +1,9 @@
 NAME		= MyAwsomePhoneBook
-CC		= g++
+CC			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++98 -pedantic
-CPP		= main.cpp 
-
+CPP			= main.cpp \
+			  Contact.class.cpp \
+			  PhoneBook.class.cpp
 # ==============================================================================
 
 
