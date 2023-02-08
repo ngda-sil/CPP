@@ -18,7 +18,7 @@ class	Contact
 
 	private:
 
-		std::string info[5];
+		std::string _info[5];
 };
 
 #endif

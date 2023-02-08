@@ -2,7 +2,7 @@
 
 PhoneBook::PhoneBook(void)
 {
-	nb = 0;
+	_nb = 0;
 	return;
 }
 
@@ -13,12 +13,12 @@ PhoneBook::~PhoneBook(void)
 
 void	PhoneBook::addContact(void)
 {
-	newContact.initNewContact();
-	newContact.setInfo();
-	tab[nb] = newContact; 
-	nb++;
-	if (nb == 8)
-		nb = 0;
+	_newContact.initNewContact();
+	_newContact.setInfo();
+	_tab[_nb] = _newContact; 
+	_nb++;
+	if (_nb == 8)
+		_nb = 0;
 }
 
 void	PhoneBook::searchContact(void)
@@ -32,7 +32,7 @@ void	PhoneBook::searchContact(void)
 		std::cout << "|" << std::setw(ColWidth) << std::right << index << '|';
 		for (int i = 0; i < 3; i++)
 		{
-			str = tab[index].getInfo(i); 
+			str = _tab[index].getInfo(i); 
 			if (str.length() >= (unsigned long)ColWidth)
 			{
 				str.resize(ColWidth);
@@ -48,7 +48,8 @@ void	PhoneBook::searchContact(void)
 void	PhoneBook::displayContact(void)
 {
 	std::string	i;
-	newContact.initNewContact();
+
+	_newContact.initNewContact();
 	std::cout << "Enter a index number : ";
 	std::getline(std::cin, i);
 	 while (i.length() != 1 || !isdigit(i[0]) || i[0] > '7')
@@ -58,6 +59,20 @@ void	PhoneBook::displayContact(void)
 	}
 	std::cout << std::endl;
 	for (int j = 0; j < 5; j++)
-		std::cout << newContact.getInfo(j) << " : " << tab[std::stoi(i, nullptr, 10)].getInfo(j) << "\n";
+		std::cout << _newContact.getInfo(j) << " : " << _tab[std::stoi(i, nullptr, 10)].getInfo(j) << "\n";
 	std::cout<< std::endl;
+}
+
+void	PhoneBook::welcome(void)
+{
+	std::cout << "██╗      ██████╗  ██████╗ █████╗ ██╗   ██╗  ██╗██████╗\n";
+	std::cout << "██║     ██╔═══██╗██╔════╝██╔══██╗██║   ██║  ██║╚════██╗\n" ;
+	std::cout << "██║     ██║   ██║██║     ███████║██║   ███████║ █████╔╝\n" ;
+	std::cout << "██║     ██║   ██║██║     ██╔══██║██║   ╚════██║██╔═══╝ \n" ;
+	std::cout << "███████╗╚██████╔╝╚██████╗██║  ██║███████╗██╗██║███████╗\n" ;
+	std::cout << "╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝╚══════╝\n" ;
+	std::cout << "\n                  Welcome to local.42\n";
+	std::cout << "\n- To add a contact type ADD\n";
+	std::cout << "- To search a contact type SEARCH\n";
+	std::cout << "- To exit, well, type EXIT\n\n";
 }

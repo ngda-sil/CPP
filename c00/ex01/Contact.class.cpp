@@ -13,28 +13,28 @@ Contact::~Contact(void)
 void	Contact::initNewContact(void)
 {
 	std::string	FirstName = "FirstName";
-	std::string LastName = "LastName";
-	std::string NickName = "NickName";
-	std::string PhoneNumber = "PhoneNumber";
-	std::string DarkestSecret = "DarkestSecret";
+	std::string 	LastName = "LastName";
+	std::string 	NickName = "NickName";
+	std::string 	PhoneNumber = "PhoneNumber";
+	std::string	DarkestSecret = "DarkestSecret";
 	
-	info[0] = FirstName;
-	info[1] = LastName;
-	info[2] = NickName;
-	info[3] = PhoneNumber;
-	info[4] = DarkestSecret;
+	_info[0] = FirstName;
+	_info[1] = LastName;
+	_info[2] = NickName;
+	_info[3] = PhoneNumber;
+	_info[4] = DarkestSecret;
 }
 
 void	Contact::setInfo(void)
 {
 	for (int i = 0; i < 5; i++)
 	{
-		std::cout << "Enter " << info[i] << " : ";
-		std::getline(std::cin,info[i]);
-		while (info[i].empty())
+		std::cout << "Enter " << _info[i] << " : ";
+		std::getline(std::cin,_info[i]);
+		while (_info[i].empty())
 		{
 			std::cout << "You must enter something ! Try again : ";
-			std::getline(std::cin,info[i]);
+			std::getline(std::cin,_info[i]);
 		}
 	}
 }
@@ -42,7 +42,7 @@ void	Contact::setInfo(void)
 std::string	Contact::getInfo(int i)
 {
 	if (i >= 0 && i <=4)
-		return(info[i]);
+		return(_info[i]);
 	else
-		return("Info doest exist !");
+		return("Info does'nt exist !");
 }

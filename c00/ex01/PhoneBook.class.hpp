@@ -13,12 +13,13 @@ class	PhoneBook
 		void addContact(void);
 		void searchContact(void);
 		void displayContact(void);
+		void welcome(void);
 
 	private:
 
-		int		nb;
-		Contact	newContact;
-		Contact	tab[8];
+		int	_nb;
+		Contact	_newContact;
+		Contact	_tab[8];
 };
 
 #endif
