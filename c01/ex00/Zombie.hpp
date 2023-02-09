@@ -9,14 +9,14 @@ class Zombie
 		Zombie(std::string name);
 		~Zombie();
 		/*Zombie(const Zombie &a);
-		Zombie & operator=(const Zombie &a);
-*/
+		Zombie & operator=(const Zombie &a);*/
 		void	announce(void);
-		Zombie*	newZombie(std::string name);
-		void	randomChump(std::string name);
 
 	private:
 		std::string	_name;
 };
+
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif

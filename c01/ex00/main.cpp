@@ -2,15 +2,14 @@
 
 int	main()
 {
-	Zombie	ZombieMaker = Zombie("Patient 0");
-	Zombie	ZombieOne = Zombie("Jean");
-	Zombie*	ZombieTwo;
+	Zombie	ZombieOne = Zombie("1) Jean");
+	Zombie*	ZombieTwo = newZombie("2) Jacques");
 
 	ZombieOne.announce();
-	ZombieTwo = ZombieMaker.newZombie("Jacques");
 	ZombieTwo->announce();
-	ZombieMaker.randomChump("Paul");
+	randomChump("3) Paul");
 
 	delete ZombieTwo;
+	
 	return (0);
 }

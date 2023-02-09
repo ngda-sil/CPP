@@ -3,13 +3,11 @@
 
 Zombie::Zombie(std::string name) : _name(name)
 {
-	return;
 }
 
 Zombie::~Zombie()
 {
 	std::cout << this->_name << " has been successfully destroyed\n";
-	return;
 }
 
 /*void	Zombie::Zombie(Zombie const &a)
