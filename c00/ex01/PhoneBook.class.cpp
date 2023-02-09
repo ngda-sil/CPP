@@ -63,7 +63,7 @@ void	PhoneBook::displayContact(void)
 	std::cout<< std::endl;
 }
 
-void	PhoneBook::welcome(void)
+void	welcome(void)
 {
 	std::cout << "██╗      ██████╗  ██████╗ █████╗ ██╗   ██╗  ██╗██████╗\n";
 	std::cout << "██║     ██╔═══██╗██╔════╝██╔══██╗██║   ██║  ██║╚════██╗\n" ;

@@ -6,7 +6,7 @@ int	main()
 	std::string	input;
 	PhoneBook	MyPhoneBook;
 
-	MyPhoneBook.welcome();
+	welcome();
 	while (input != "EXIT")
 	{
 		std::cout << "INPUT : ";

@@ -13,7 +13,6 @@ class	PhoneBook
 		void addContact(void);
 		void searchContact(void);
 		void displayContact(void);
-		void welcome(void);
 
 	private:
 
@@ -21,5 +20,7 @@ class	PhoneBook
 		Contact	_newContact;
 		Contact	_tab[8];
 };
+
+void welcome(void);
 
 #endif
