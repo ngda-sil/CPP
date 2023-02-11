@@ -1,14 +1,19 @@
 NAME	= LaBagarre
-CC	= g++
+CC		= g++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
-CPP		= main.cpp \
-		  
+SRC		= main.cpp \
+		  Weapon.cpp \
+		  HumanA.cpp \
+		  HumanB.cpp 
+OBJ		= $(SRC:.cpp=.o)
 # ==============================================================================
 
 
 all : $(OBJ)
-	$(CC) $(CFLAGS) $(CPP) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
+clean : 
+	rm -f $(OBJ)
 fclean : clean
 	rm -Rf $(NAME)
 
