@@ -1,6 +1,6 @@
 #include "HumanA.hpp"
 
-HumanB::HumanA(std::string name, Weapon& type) : _name(name), _Weapon(type)
+HumanA::HumanA(std::string name, Weapon& type) : _name(name), _Weapon(type)
 {
 	return;
 }

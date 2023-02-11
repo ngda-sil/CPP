@@ -12,7 +12,7 @@ class HumanA
 	
 	private:
 		std::string	_name;
-		Weapon		_Weapon;
+		Weapon&		_Weapon;
 };
 
 #endif

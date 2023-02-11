@@ -4,7 +4,7 @@ CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
 SRC		= main.cpp \
 		  Weapon.cpp \
 		  HumanA.cpp \
-		  HumanB.cpp 
+		  #HumanB.cpp 
 OBJ		= $(SRC:.cpp=.o)
 # ==============================================================================
 
