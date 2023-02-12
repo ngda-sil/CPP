@@ -1,8 +1,7 @@
-#include "PhoneBook.class.hpp"
+#include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void)
+PhoneBook::PhoneBook(void) : _nb(0)
 {
-	_nb = 0;
 	return;
 }
 
@@ -29,7 +28,7 @@ void	PhoneBook::searchContact(void)
 	std::cout << "\nINDEX      FIRSTNAME  LASTNAME   NICKNAME\n" << "---------------------------------------------\n";
 	for (int index = 0; index < 8; index++)
 	{	
-		std::cout << "|" << std::setw(ColWidth) << std::right << index << '|';
+		std::cout << "|" << std::setw(ColWidth) << std::right << index + 1 << '|';
 		for (int i = 0; i < 3; i++)
 		{
 			str = _tab[index].getInfo(i); 
@@ -52,14 +51,14 @@ void	PhoneBook::displayContact(void)
 	_newContact.initNewContact();
 	std::cout << "Enter a index number : ";
 	std::getline(std::cin, i);
-	 while (i.length() != 1 || !isdigit(i[0]) || i[0] > '7')
+	 while (i.length() != 1 || !isdigit(i[0]) || i[0] > '8' || i[0] == '0')
 	{
 		std::cout << "Invalid input ! Enter a valid index number : ";
 		std::getline(std::cin, i);
 	}
 	std::cout << std::endl;
 	for (int j = 0; j < 5; j++)
-		std::cout << _newContact.getInfo(j) << " : " << _tab[std::stoi(i, nullptr, 10)].getInfo(j) << "\n";
+		std::cout << _newContact.getInfo(j) << " : " << _tab[std::stoi(i, nullptr, 10) - 1].getInfo(j) << "\n";
 	std::cout<< std::endl;
 }
 

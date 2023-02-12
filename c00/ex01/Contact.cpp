@@ -1,4 +1,4 @@
-#include "Contact.class.hpp"
+#include "Contact.hpp"
 
 Contact::Contact(void) 
 {
@@ -12,17 +12,11 @@ Contact::~Contact(void)
 	
 void	Contact::initNewContact(void)
 {
-	std::string	FirstName = "FirstName";
-	std::string 	LastName = "LastName";
-	std::string 	NickName = "NickName";
-	std::string 	PhoneNumber = "PhoneNumber";
-	std::string	DarkestSecret = "DarkestSecret";
-	
-	_info[0] = FirstName;
-	_info[1] = LastName;
-	_info[2] = NickName;
-	_info[3] = PhoneNumber;
-	_info[4] = DarkestSecret;
+	_info[0] = "FirstName";
+	_info[1] = "LastName";
+	_info[2] = "NickName";
+	_info[3] = "PhoneNumber";
+	_info[4] = "DarkestSecret";
 }
 
 void	Contact::setInfo(void)
@@ -44,5 +38,5 @@ std::string	Contact::getInfo(int i)
 	if (i >= 0 && i <=4)
 		return(_info[i]);
 	else
-		return("Info does'nt exist !");
+		return("Info doesn't exist !");
 }

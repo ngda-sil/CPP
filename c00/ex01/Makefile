@@ -1,19 +1,22 @@
 NAME	= MyAwsomePhoneBook
-CC		= g++
+CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
-CPP		= main.cpp \
-		  PhoneBook.class.cpp \
-		  Contact.class.cpp \
-		  
+SRC		= main.cpp \
+		  PhoneBook.cpp \
+		  Contact.cpp 
+OBJ		= $(SRC:.cpp=.o)  
 # ==============================================================================
 
 
 all : $(OBJ)
-	$(CC) $(CFLAGS) $(CPP) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-fclean : clean
+clean	: 
+	rm -Rf $(OBJ)
+
+fclean	: clean
 	rm -Rf $(NAME)
 
-re : fclean all
+re 		: fclean all
 
 .PHONY: all clean fclean re
