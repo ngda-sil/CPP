@@ -4,6 +4,7 @@
 # include <iostream>
 # include <string>
 # include <fstream>
+# include <cstdio>
 
 int		printError(std::string s1, int i);
 void	remplaceWord(std::string* line, std::string *s1, std::string* s2);

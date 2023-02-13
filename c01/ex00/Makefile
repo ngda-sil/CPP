@@ -1,15 +1,17 @@
-NAME	= Apocalypse
-CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
-SRC		= main.cpp \
-		  Zombie.cpp \
-		  newZombie.cpp \
-		  randomChump.cpp
-OBJ		= $(SRC:.cpp=.o)		  
+NAME		= Apocalypse
+CC			= c++
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
+SRC			= main.cpp \
+			  Zombie.cpp \
+			  newZombie.cpp \
+			  randomChump.cpp
+OBJ			= $(SRC:.cpp=.o)		  
 # ==============================================================================
 
 
-all : $(OBJ)
+all : $(NAME)
+	
+$(NAME)	: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean	:

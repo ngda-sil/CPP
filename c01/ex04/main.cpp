@@ -9,24 +9,26 @@ int	main(int ac, char **av)
 	std::string		s1(av[2]);
 	std::string		s2(av[3]);
 	
-	std::ifstream	file1(filename);
-	std::ofstream	file2(filename.append(".replace"));
+	std::ifstream	infile(filename);
 	std::string		line;
 
 	//std::cout << s1 << std::endl;
 	//std::cout << s2 << std::endl;
+	
+	if (!infile.is_open())
+		return (printError("Error opening file", 1));
 
-	while (getline(file1, line))
+	std::ofstream	outfile(filename + ".replace");
+
+	while (getline(infile, line))
 	{
-		if (line.empty())
-			return (printError(filename.insert(0, "no such file : "), 1));
-		else 
-		{
-			//std::cout << "1 : " << line << std::endl;
-			remplaceWord(&line, &s1, &s2);
-			//std::cout << "2 : " << line << std::endl;
-			file2 << line << std::endl;
-		}
+		//std::cout << "1 : " << line << std::endl;
+		remplaceWord(&line, &s1, &s2);
+		//std::cout << "2 : " << line << std::endl;
+		outfile << line << std::endl;
 	}
+	infile.close();
+	outfile.close();
+	
 	return (0);
 }
