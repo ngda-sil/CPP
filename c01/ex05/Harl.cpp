@@ -12,7 +12,8 @@ Harl::~Harl()
 
 void	Harl::complain(std::string level)
 {
-	std::string levels[4] = { "DEBUG", "INFO", "WARNING", "ERROR"};
+	std::string tab[4] = { "DEBUG", "INFO", "WARNING", "ERROR"};
+
 	void (Harl:: *f[])(void) = 
 	{ 
 		&Harl::_debug, 
@@ -22,26 +23,26 @@ void	Harl::complain(std::string level)
 	};
 	
 	for (int i = 0; i < 4; i++)
-		if (levels[i] == level)
+		if (tab[i] == level)
 			(this->*f[i])();
 }
 
 void	Harl::_debug()
 {
-	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do !\n";
+	std::cout << "1) On est sur du petit debug tranquille\n";
 }
 
 void	Harl::_info()
 {
-	std::cout << "I cannot believe adding extra bacon costs more money. You didn’t put enough bacon in my burger ! If you did, I wouldn’t be asking for more !\n";
+	std::cout << "2) Heu pourquoi ca fait des trucs bizarres la\n";
 }
 
 void	Harl::_warning()
 {
-	std::cout << "I think I deserve to have some extra bacon for free. I’ve been coming for years whereas you started working here since last month\n";
+	std::cout << "3) OULALALALALALA, faut faire attention\n";
 }
 
 void	Harl::_error()
 {
-	std::cout << "This is unacceptable ! I want to speak to the manager now.\n";
+	std::cout << "4) AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n";
 }

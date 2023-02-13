@@ -1,16 +1,19 @@
 NAME	= Apocalypse
-CC	= g++
+CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
-CPP		= main.cpp \
+SRC		= main.cpp \
 		  Zombie.cpp \
-		 newZombie.cpp \
-		 randomChump.cpp
-		  
+		  newZombie.cpp \
+		  randomChump.cpp
+OBJ		= $(SRC:.cpp=.o)		  
 # ==============================================================================
 
 
 all : $(OBJ)
-	$(CC) $(CFLAGS) $(CPP) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
+clean	:
+	rm -Rf $(OBJ)
 
 fclean : clean
 	rm -Rf $(NAME)

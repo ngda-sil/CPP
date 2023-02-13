@@ -1,7 +1,8 @@
 NAME	= Sed4Winner
-CC		= g++
+CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
-SRC		= main.cpp 
+SRC		= main.cpp \
+		  utils.cpp
 OBJ		= $(SRC:.cpp=.o)
 # ==============================================================================
 

@@ -3,9 +3,11 @@
 
 int	main()
 {
-	int	i = 3;
+	int	i = 4;
 	Zombie* MyZombies = zombieHorde(i, "Jean");
+	
 	MyZombies->announce();
+	
 	for (int j = 0; j < i; j++)
 		MyZombies[j].announce();
 	

@@ -7,6 +7,7 @@ int	main()
 
 	ZombieOne.announce();
 	ZombieTwo->announce();
+	//delete ZombieTwo;
 	randomChump("3) Paul");
 
 	delete ZombieTwo;

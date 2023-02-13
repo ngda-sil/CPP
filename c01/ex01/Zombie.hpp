@@ -8,8 +8,7 @@ class Zombie
 	public:
 		Zombie();
 		~Zombie();
-		/*Zombie(const Zombie &a);
-		Zombie & operator=(const Zombie &a);*/
+
 		void	announce(void);
 		void	setName(std::string name);
 

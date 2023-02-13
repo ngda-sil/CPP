@@ -12,8 +12,8 @@ Harl::~Harl()
 
 void	Harl::complain(std::string level)
 {
-	int			i = -1;
-	std::string levels[4] = { "DEBUG", "INFO", "WARNING", "ERROR"};
+	std::string tab[4] = { "DEBUG", "INFO", "WARNING", "ERROR"};
+
 	void (Harl:: *f[])(void) = 
 	{ 
 		&Harl::_debug, 
@@ -21,23 +21,32 @@ void	Harl::complain(std::string level)
 		&Harl::_warning,
 		&Harl::_error,
 	};
+
+	int			i = -1;
+	
 	while (++i < 4)
-		if (levels[i] == level)
-		{	
-			std::cout << "[ " << level << " ]\n"; 
+		if (tab[i] == level)
 			break;
-		}
+	
 	switch(i)
 	{
 		case 0 :
-			(this->*f[0])();
+				std::cout << "[ " << tab[0] << " ]\n"; 
+				(this->*f[0])();
+				std::cout << std::endl; 
 		case 1 :
-			(this->*f[1])();
+				std::cout << "[ " << tab[1] << " ]\n"; 
+				(this->*f[1])();
+				std::cout << std::endl; 
 		case 2 :
-			(this->*f[2])();
+				std::cout << "[ " << tab[2] << " ]\n"; 
+				(this->*f[2])();
+				std::cout << std::endl; 
 		case 3 :
-			(this->*f[3])();
-			break;
+				std::cout << "[ " << tab[3] << " ]\n"; 
+				(this->*f[3])();
+				std::cout << std::endl; 
+				break;
 		default :
 		   std::cout <<  "[ Probably complaining about insignificant problems ]\n";
 	}
@@ -45,20 +54,20 @@ void	Harl::complain(std::string level)
 
 void	Harl::_debug()
 {
-	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do !\n";
+	std::cout << "1) On est sur du petit debug tranquille\n";
 }
 
 void	Harl::_info()
 {
-	std::cout << "I cannot believe adding extra bacon costs more money. You didn’t put enough bacon in my burger ! If you did, I wouldn’t be asking for more !\n";
+	std::cout << "2) Heu pourquoi ca fait des trucs bizarres la\n";
 }
 
 void	Harl::_warning()
 {
-	std::cout << "I think I deserve to have some extra bacon for free. I’ve been coming for years whereas you started working here since last month\n";
+	std::cout << "3) OULALALALALALA, faut faire attention\n";
 }
 
 void	Harl::_error()
 {
-	std::cout << "This is unacceptable ! I want to speak to the manager now.\n";
+	std::cout << "4) AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n";
 }

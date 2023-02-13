@@ -1,46 +1,32 @@
-#include <iostream>
-#include <string>
-#include <fstream>
+#include "sed4winner.hpp"
 
 int	main(int ac, char **av)
 {
-	std::string		filename = av[1];
-	std::ifstream	FileOne(filename);
-	std::ofstream	FileTwo(filename.append(".replace"));
+	if (ac != 4)
+		return (printError("usage : ./Sed4Winner <filename> s1 s2", 1));
+	
+	std::string		filename(av[1]);
 	std::string		s1(av[2]);
 	std::string		s2(av[3]);
-	std::string		Line;
-	std::size_t		found;
+	
+	std::ifstream	file1(filename);
+	std::ofstream	file2(filename.append(".replace"));
+	std::string		line;
 
-	std::cout << s1 << std::endl;
-	std::cout << s2 << std::endl;
+	//std::cout << s1 << std::endl;
+	//std::cout << s2 << std::endl;
 
-	if (ac != 4)
+	while (getline(file1, line))
 	{
-		std::cout << "usage : ./Sed4Winner <filename> s1 s2 \n";
-		return (1);
-	}
-
-	while (getline(FileOne, Line))
-	{
-		if (Line.empty())
-		{
-			std::cout << "no such file " << av[1] << std::endl;
-			return (1);
-		}
+		if (line.empty())
+			return (printError(filename.insert(0, "no such file : "), 1));
 		else 
 		{
-			std::cout << "1 : " << Line << std::endl;
-			found = Line.find(s1);
-			if (found != std::string::npos)
-			{
-				Line.erase(found, s1.length());
-				Line.insert(found, s2);	
-			}
-			std::cout << "2 : " << Line << std::endl;
-			FileTwo << Line << std::endl;
+			//std::cout << "1 : " << line << std::endl;
+			remplaceWord(&line, &s1, &s2);
+			//std::cout << "2 : " << line << std::endl;
+			file2 << line << std::endl;
 		}
 	}
-	FileOne.close();
 	return (0);
 }
