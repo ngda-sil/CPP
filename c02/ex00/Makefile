@@ -1,14 +1,16 @@
-NAME	= MyFirstCan_MyFirst_My
-CC		= g++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
-SRC		= main.cpp \
-		  Fixed.cpp
-OBJ		= $(SRC:.cpp=.o)
+NAME		= MyFirstCan_MyFirst_My
+CXX			= c++
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
+SRC			= main.cpp \
+			  Fixed.cpp
+OBJ			= $(SRC:.cpp=.o)
 # ==============================================================================
 
 
-all : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+all : $(NAME)
+	
+$(NAME)	:	$(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean : 
 	rm -f $(OBJ)
