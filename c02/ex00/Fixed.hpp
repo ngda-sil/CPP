@@ -16,8 +16,8 @@ class	Fixed
 		void	setRawBits(int const raw);
 
 	private:
-		int					_fixed;
-		static int const	_s_fraction = 8;
+		int					_n;
+		static int const	_s_point_pos = 8;
 };
 
 #endif

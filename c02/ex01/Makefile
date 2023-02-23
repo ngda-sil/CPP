@@ -1,9 +1,9 @@
 NAME		= ClasseUtile
-CXX		= c++
+CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
-SRC		= main.cpp \
-		  Fixed.cpp
-OBJ		= $(SRC:.cpp=.o)
+SRC			= main.cpp \
+		  	Fixed.cpp
+OBJ			= $(SRC:.cpp=.o)
 # ==============================================================================
 
 
