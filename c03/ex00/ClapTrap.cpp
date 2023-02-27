@@ -2,66 +2,80 @@
 
 // Canonical
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hitP(10), _energyP(10), _damage(0)
+/*ClapTrap(void) : _name(NULL), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << _name << "Constructor called" std::endl;
+	std::cout << _name << " constructor called" << std::endl;
+}*/
+
+ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+	std::cout << _name << " constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &rv) : _name(rv._name), _hitP(rv._hitP), _energyP(rv._energyP), _damage(rv._damage)
+ClapTrap::ClapTrap(const ClapTrap &rhs)
 {
-	std::cout << _name << "Copy constructor called" std::endl;
+	*this = rhs;
 }
 
-ClapTrap& ClapTrap::operator=(const ClapTrap &rv)
+ClapTrap& ClapTrap::operator=(const ClapTrap &rhs)
 {
-	_name 	= rv._name;
-	_hitP 	= rv._hitP;
-	_energyP = rv._energyP;
-	_damage = rv._damage;
+	_name 			= rhs._name;
+	_hitPoints 		= rhs._hitPoints;
+	_energyPoints 	= rhs._energyPoints;
+	_attackDamage	= rhs._attackDamage;
 
-	return (this);
+	return (*this);
 }
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << _name << "Destructor called" std::endl;
+	std::cout << _name << " destructor called" << std::endl;
 }
 
-// Public Member Functions
+// Public Member Function 
 
 void	ClapTrap::attack(const std::string &target)
 {
-	if (_hitP && _energyP)
+	if (_hitPoints && _energyPoints)
 	{
-		target.takeDamage(_damage);
-		_energyP--;
-		std::cout << "ClapTrap " _name << " attacks " target._name << " causing " << _damage << " points of damage! " << std::endl;
+		std::cout << "ClapTrap " << _name << " attacks " << target <<
+		", causing " << _attackDamage << " points of damage !" << std::endl;
+		_energyPoints--;
 	}
+	else if (_hitPoints <= 0)
+		std::cout << "Not enough hit points" << std::cout;
 	else
-		std::cout << _name << "is low on hit points : " << _hitP << " or is low on energy points :" << _energyP << std::endl;
+		std::cout << "Not enough energy point" << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	_hitP -= amount;
-	std::cout << "ClapTrap " _name << " receives" amount << " damage! "<< " Hit points : " << _hitP << std::endl;
-}
-
-void	ClapTrap::beRepaired(unsigned int amount)
-{
-	if (_hitP && _energyP)
+	if (_hitPoints <= 0)
+		std::cout << "Don't attack dead people please" << std::endl;
+	else 
 	{
-		_hitP += amount;
-		_energyP--;
-		std::cout << "ClapTrap " _name << " repares " amount << "hit points. Hit Points : " << _hitP << " Energy points : " << _energyP << std::endl;
+		if ((_hitPoints - amount) < 0)
+			_hitPoints -= amount;
+		else 
+			_hitPoints = 0;
+		
+		std::cout << _name << " took " << amount << " points of damage ! Hit points : ["
+			<< _hitPoints << "] Energy points : [" << _energyPoints << "]" << std::endl;
 	}
-	else
-		std::cout << _name << "is low on hit points : " << _hitP << " or is low on energy points :" << _energyP << std::endl;
 }
 
-// Public Member Functions : Get
-
-std::string	ClapTrap::getName(void)
+void ClapTrap::beRepaired(unsigned int amount)
 {
-	
+	if (_energyPoints <= 0)
+		std::cout << "Energy level at 0, we can't do anything for you go sleep" 
+			<< std::endl;
+	else 
+	{
+		_hitPoints += amount;
+		_energyPoints--;
+		
+		std::cout << "ClapTrap " << _name << " received " << amount <<
+		" hit points ! Hit points [" << _hitPoints << "] Energy points [" << 
+		_energyPoints << "]" << std::endl;
+	}
 }

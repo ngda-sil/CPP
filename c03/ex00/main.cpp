@@ -2,14 +2,23 @@
 
 int	main()
 {
-	ClapTrap	a("Henry");
-	ClapTrap	b("Marc");
-	ClapTrap	c("Laurine");
-
-	for (int i = 10; i > 0; i--)
-	{
-		a.attack(b);
-	}
-
-	return (0);
+	ClapTrap a("Jean");
+	ClapTrap b(a);
+	ClapTrap c("Janine");
+	
+	a.attack("La societe capitaliste");
+	a.takeDamage(15);
+	a.takeDamage(15);
+	a.beRepaired(2);
+	a.beRepaired(2);
+	a.beRepaired(2);
+	a.beRepaired(2);
+	a.beRepaired(2);
+	a.beRepaired(2);
+	a.beRepaired(2);
+	a.beRepaired(2);
+	a.beRepaired(2);
+	a.beRepaired(2);
+	a.beRepaired(2);
+	return(0);
 }
