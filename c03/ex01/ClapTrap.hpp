@@ -2,11 +2,11 @@
 # define CLAPTRAP_HPP
 
 # include <iostream>
-# include <string>
 
 class ClapTrap
 {
 	public:
+			ClapTrap(void);
 			ClapTrap(std::string name);
 			ClapTrap(const ClapTrap &rhs);
 			ClapTrap& operator=(const ClapTrap &rhs);
@@ -18,7 +18,7 @@ class ClapTrap
 
 	protected:
 			std::string 	_name;
-			int				_hitPoints;
+			unsigned int	_hitPoints;
 			int				_energyPoints;
 			int				_attackDamage;
 };
