@@ -2,7 +2,6 @@
 # define CLAPTRAP_HPP
 
 # include <iostream>
-# include <string>
 
 class ClapTrap
 {
@@ -19,7 +18,7 @@ class ClapTrap
 
 	private:
 			std::string 	_name;
-			int				_hitPoints;
+			unsigned int	_hitPoints;
 			int				_energyPoints;
 			int				_attackDamage;
 };
