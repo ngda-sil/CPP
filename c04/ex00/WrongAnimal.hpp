@@ -3,19 +3,30 @@
 
 # include <iostream>
 
-class WrongAnimal
+class	WrongAnimal
 {
 	public:
-		WrongAnimal();
+		WrongAnimal(void);
 		WrongAnimal(const WrongAnimal &rhs);
 		WrongAnimal& operator=(const WrongAnimal &rhs);
-		~WrongAnimal();
-
-		std::string	getType() const;
-		void		makeSound() const;
+		~WrongAnimal(void);
+		
+		std::string	getType(void) const;
+		void		makeSound(void) const;
+	
 	protected:
-		std::string	type;
-		std::string	sound;
+		std::string	p_type;
+};
+
+class	WrongCat : public WrongAnimal
+{
+	public:
+		WrongCat(void);
+		WrongCat(const WrongCat &rhs);
+		WrongCat& operator=(const WrongCat &rhs);
+		~WrongCat(void);
+		
+		void	makeSound(void) const;
 };
 
 #endif

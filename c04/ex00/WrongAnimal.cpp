@@ -1,37 +1,73 @@
 #include "WrongAnimal.hpp"
 
-// Canonical
+// WrongAnimal : Canonical
 
-WrongAnimal::WrongAnimal() : type("unknown wrong species"), sound("unknown sound")
+WrongAnimal::WrongAnimal(void) : p_type("WrongAnimal")
 {
-
+	std::cout << "WrongAnimal	: Constructor" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &rhs)
 {
+	std::cout << "WrongAnimal	: Copy constructor" << std::endl;
 	*this = rhs;
 }
 
-WrongAnimal&	WrongAnimal::operator=(const WrongAnimal &rhs)
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal &rhs)
 {
-	type 	= rhs.type;
-	sound 	= rhs.sound;
-	
+	std::cout << p_type << "WrongAnimal	: Copy operator" << std::endl;
+	p_type = rhs.p_type;
 	return (*this);
 }
 
-WrongAnimal::~WrongAnimal()
+WrongAnimal::~WrongAnimal(void)
 {
+	std::cout<< "WrongAnimal	: Destructor" << std::endl;
 }
 
-// Public Member Functions
+// WrongAnimal : Public member functions
 
-std::string WrongAnimal::getType() const
+std::string WrongAnimal::getType(void) const
 {
-	return (type);
+	return (p_type);
 }
 
-void	WrongAnimal::makeSound() const
+// WrongAnimal : Protected member functions
+
+void	WrongAnimal::makeSound(void) const 
 {
-	std::cout << type << " says : " << sound << std::endl;
+	std::cout << p_type << "	: WrongAnimal sound" << std::endl; 
+}
+
+// WrongCat : Canonical
+
+WrongCat::WrongCat(void)
+{
+	std::cout << "WrongCat	: Constructor" << std::endl;
+	p_type = "WrongCat";
+}
+
+WrongCat::WrongCat(const WrongCat &rhs)
+{
+	std::cout << "WrongCat	: Copy constructor" << std::endl;
+	*this = rhs;
+}
+
+WrongCat& WrongCat::operator=(const WrongCat &rhs)
+{
+	std::cout << "WrongCat	: Copy operator" << std::endl;
+	p_type = rhs.p_type;
+	return (*this);
+}
+
+WrongCat::~WrongCat(void)
+{
+	std::cout << "WrongCat	: Destructor" << std::endl;
+}
+
+// WrongCat : Protected member functions
+
+void	WrongCat::makeSound(void) const
+{
+	std::cout << p_type << "	: Miaou" << std::endl; 
 }

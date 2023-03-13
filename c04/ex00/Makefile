@@ -2,11 +2,8 @@ NAME		= Polymorphisme
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
 SRC			= main.cpp \
-			  Animal.cpp \
-			  Cat.cpp \
-			  Dog.cpp \
-			  WrongAnimal.cpp \
-			  WrongCat.cpp
+			  Animal.cpp\
+			  WrongAnimal.cpp
 OBJ			= $(SRC:.cpp=.o)
 # ==============================================================================
 
