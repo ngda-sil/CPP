@@ -68,33 +68,5 @@ int	main()
 			std::cout << "Jean	:		"; Jean.getIdea(0);
 		}
 	}
-	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
-	{
-		Cat*	Gilgamesh = new Cat();
-		Dog*	Kodac = new Dog();
-
-		Gilgamesh->setIdea(0, "I want food");
-		Kodac->setIdea(0, "Balle");
-		std::cout << "Gilgamesh think: "; Gilgamesh->getIdea(0);
-		std::cout << "Kodac think: "; Kodac->getIdea(0);
-		Cat*	LucyPurr = new Cat(*Gilgamesh);
-		Dog*	AnotherDog = new Dog(*Kodac);
-		std::cout << "LucyPurr think: "; LucyPurr->getIdea(0);
-		std::cout << "AnotherDog think:";AnotherDog->getIdea(0);
-		LucyPurr->setIdea(0, "I want to play");
-		AnotherDog->setIdea(1, "FOOD");
-		std::cout << "Kodac think: "; Kodac->getIdea(1);
-		std::cout << "AnotherDog think: "; AnotherDog->getIdea(1);
-		std::cout << "LucyPurr think: "; LucyPurr->getIdea(0);
-		std::cout << "Gilgamesh think: "; Gilgamesh->getIdea(0);
-		Gilgamesh->setIdea(0, "I love to eat");
-		std::cout << "LucyPurr think: "; LucyPurr->getIdea(0);
-		std::cout << "Gilgamesh think: "; Gilgamesh->getIdea(0);
-
-		delete Gilgamesh;
-		delete LucyPurr;
-		delete Kodac;
-		delete AnotherDog;
-	}
 	return (0);
 }
