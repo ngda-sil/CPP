@@ -15,7 +15,7 @@ Animal::Animal(const Animal &rhs)
 
 Animal& Animal::operator=(const Animal &rhs)
 {
-	std::cout << p_type << "Animal	:Copy operator" << std::endl;
+	std::cout << "Animal	:Copy operator" << std::endl;
 	p_type = rhs.p_type;
 	return (*this);
 }
