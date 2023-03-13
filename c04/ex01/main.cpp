@@ -19,16 +19,18 @@ int	main()
 		Dog	Medor;
 		Dog	Bethoveen;
 
+		std::cout << "Beth	:		"; Bethoveen.setIdea(500, "idfaajdi");
+		std::cout << "Beth	:		"; Bethoveen.getIdea(500);
+		
 		Medor.setIdea(0, "Eureka");
-		Medor.getIdea(0);
+		std::cout << "Medor	:		"; Medor.getIdea(0);
 	
 		Dog Paf(Medor);
 
-		Paf.getIdea(0);
-		Bethoveen.getIdea(0);
-		Paf.setIdea(2000, "Nevermind, there is a segfault");
-		Paf.getIdea(2002002002002002002002002002002002002002002002002002002002000);
-		Medor.getIdea(0);
+		std::cout << "Paf	:		"; Paf.getIdea(0);
+		Paf.setIdea(0, "Nevermind, there is a segfault");
+		std::cout << "Paf	:		"; Paf.getIdea(0);
+		std::cout << "Medor	:		"; Medor.getIdea(0);
 	}
 	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 	{
@@ -65,6 +67,34 @@ int	main()
 			std::cout << "Marie	:		"; Marie.getIdea(0);
 			std::cout << "Jean	:		"; Jean.getIdea(0);
 		}
+	}
+	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
+	{
+		Cat*	Gilgamesh = new Cat();
+		Dog*	Kodac = new Dog();
+
+		Gilgamesh->setIdea(0, "I want food");
+		Kodac->setIdea(0, "Balle");
+		std::cout << "Gilgamesh think: "; Gilgamesh->getIdea(0);
+		std::cout << "Kodac think: "; Kodac->getIdea(0);
+		Cat*	LucyPurr = new Cat(*Gilgamesh);
+		Dog*	AnotherDog = new Dog(*Kodac);
+		std::cout << "LucyPurr think: "; LucyPurr->getIdea(0);
+		std::cout << "AnotherDog think:";AnotherDog->getIdea(0);
+		LucyPurr->setIdea(0, "I want to play");
+		AnotherDog->setIdea(1, "FOOD");
+		std::cout << "Kodac think: "; Kodac->getIdea(1);
+		std::cout << "AnotherDog think: "; AnotherDog->getIdea(1);
+		std::cout << "LucyPurr think: "; LucyPurr->getIdea(0);
+		std::cout << "Gilgamesh think: "; Gilgamesh->getIdea(0);
+		Gilgamesh->setIdea(0, "I love to eat");
+		std::cout << "LucyPurr think: "; LucyPurr->getIdea(0);
+		std::cout << "Gilgamesh think: "; Gilgamesh->getIdea(0);
+
+		delete Gilgamesh;
+		delete LucyPurr;
+		delete Kodac;
+		delete AnotherDog;
 	}
 	return (0);
 }

@@ -3,7 +3,10 @@ CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
 SRC			= main.cpp \
 			  Animal.cpp\
-			  WrongAnimal.cpp
+			  Dog.cpp \
+			  Cat.cpp \
+			  WrongAnimal.cpp \
+			  WrongCat.cpp
 OBJ			= $(SRC:.cpp=.o)
 # ==============================================================================
 

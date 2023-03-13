@@ -18,26 +18,4 @@ class	Animal
 		std::string	p_type;
 };
 
-class	Dog : public Animal
-{
-	public:
-		Dog(void);
-		Dog(const Dog &rhs);
-		Dog& operator=(const Dog &rhs);
-		~Dog(void);
-
-		void	makeSound(void) const;
-};
-
-class	Cat : public Animal
-{
-	public:
-		Cat(void);
-		Cat(const Cat &rhs);
-		Cat& operator=(const Cat &rhs);
-		~Cat(void);
-
-		void	makeSound(void) const;
-};
-
 #endif
