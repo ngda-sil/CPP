@@ -3,6 +3,7 @@
 
 int	main()
 {
+	int		eof = 0;
 	std::string	input;
 	PhoneBook	MyPhoneBook;
 
@@ -10,7 +11,8 @@ int	main()
 	while (input != "EXIT")
 	{
 		std::cout << "INPUT : ";
-		std::getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+			break;
 
 		if (input == "ADD")
 			MyPhoneBook.addContact();
