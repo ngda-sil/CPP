@@ -1,16 +1,17 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 #include "Brain.hpp"
 
 int	main()
 {
 	{
-		const Animal*	j = new Dog();
-		const Animal*	i = new Cat();
-		
+		const AAnimal*	j = new Dog();
+		const AAnimal*	i = new Cat();
+
+	//	AAnimal	Jean;
+	//	const AAnimal* k = new AAnimal();
+
 		delete j;
 		delete i;
 	}
@@ -35,7 +36,8 @@ int	main()
 	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 	{
 		int	i = 0;
-		Animal*	tab[4];
+		AAnimal*	tab[4];
+		// AAnimal	tab2[4];
 
 		while (i < 4)
 		{
@@ -67,7 +69,6 @@ int	main()
 			std::cout << "Marie	:		"; Marie.getIdea(0);
 			std::cout << "Jean	:		"; Jean.getIdea(0);
 		}
-			std::cout << "Jean	:		"; Jean.getIdea(0);
 	}
 	return (0);
 }

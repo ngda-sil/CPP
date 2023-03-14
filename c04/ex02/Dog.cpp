@@ -39,11 +39,17 @@ void	Dog::makeSound(void) const
 
 void	Dog::getIdea(int i) const
 {
-	std::cout << "Idea [" << i << "]: " << _b->getIdea(i) << std::endl;
+	if (i < 100)
+		std::cout << "Idea [" << i << "]: " << _b->ideas[i] << std::endl;
+	else
+		std::cout << "This ideas doesn't exist" << std::endl;
 }
 
 void	Dog::setIdea(int i, std::string str)
 {
-		_b->setIdea(i, str);
+	if (i < 100)
+		_b->ideas[i] = str;
+	else
+		std::cout << "Cannot access this part of the brain" << std::endl;
 }
 

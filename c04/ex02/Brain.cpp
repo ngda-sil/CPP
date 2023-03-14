@@ -28,20 +28,3 @@ Brain::~Brain(void)
 	std::cout << "Brain	: Destructor" << std::endl;
 }
 
-// Brain : Get & Set
-
-std::string	Brain::getIdea(int i)
-{
-	if (i < 100)
-		return (ideas[i]);
-	else
-		return("This idea doesn't exist");
-}
-
-void	Brain::setIdea(int i, std::string str)
-{
-	if (i < 100)
-		ideas[i] = str;
-	else
-		std::cout << "Cannot access this part of the brain" << std::endl;
-}

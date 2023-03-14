@@ -39,10 +39,10 @@ void	Cat::makeSound(void) const
 
 void	Cat::getIdea(int i) const
 {
-	std::cout << "Idea [" << i << "]: " << _b->getIdea(i) << std::endl;
+	std::cout << "Idea [" << i << "]: " << _b->ideas[i] << std::endl;
 }
 
 void	Cat::setIdea(int i, std::string str)
 {
-	_b->setIdea(i, str);
+	_b->ideas[i] = str;
 }
