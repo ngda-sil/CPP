@@ -34,8 +34,19 @@ int	Bureaucrat::getGrade(void) const
 
 void Bureaucrat::setGrade(int grade)
 {
-	_grade = grade;
-	// try throw catch
+	try
+	{
+		if (grade < 1)
+			throw Bureaucrat::GradeTooHighException();
+		else if (grade > 150)
+			throw Bureaucrat::GradeTooLowException();
+		else
+			_grade = grade;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Error : " << e.what() << std::endl;	
+	}
 }
 
 std::string	Bureaucrat::getName(void) const
@@ -60,17 +71,29 @@ void	Bureaucrat::moveDownTheLadder(void)
 	setGrade(getGrade() + 1);
 }
 
+
+// Exceptions
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+		return("Grade too high");
+}
+
+const char 	*Bureaucrat::GradeTooLowException::what() const throw()
+{
+		return("Grade too low");
+}
+
 // ostream
 
-
 std::ostream& operator<<(std::ostream& o, Bureaucrat const &b)
 {
-	o << b.getGrade;
+	o << b.getGrade();
 	return (o);
 }
 
-std::ostream& operator<<(std::ostream& o, Bureaucrat const &b)
+/*std::ostream& operator<<(std::ostream& o, Bureaucrat const &bStr)
 {
-	o << b.getName;
+	o << bStr.getName();
 	return (o);
-}
+}*/
