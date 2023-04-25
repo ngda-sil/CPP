@@ -1,11 +1,13 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
-	Bureaucrat a(22, "Jean");
-	Bureaucrat b(150, "Janine");
-	Bureaucrat c(1, "Marc");
-	
+	Bureaucrat	a(22, "Jean");
+	Bureaucrat	b(150, "Janine");
+	Bureaucrat	c(1, "Marc");
+	Form		e("Permis de swag, 12, 30");
+
 	std::cout << "B: "<< a.getName() << " grade : "<< a.getGrade() << std::endl;
 	a.moveUpTheLadder();
 	std::cout << "B: "<< a.getName() << " grade : "<< a.getGrade() << std::endl;
@@ -27,5 +29,6 @@ int main()
 	d.moveDownTheLadder();
 	std::cout << "B: "<< d.getName() << " grade : "<< d.getGrade() << std::endl;
 	
+	b.signForm(e);
 	return(0);
 }

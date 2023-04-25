@@ -3,9 +3,10 @@
 
 # include <iostream>
 # include <exception>
-# include "Bureaucrat.cpp"
+# include "Bureaucrat.hpp"
 
-enum Function { ToSign = 0, ToExc = 1}
+enum Function { ToSign = 0, ToExc = 1};
+
 class	Form
 {
 	public:
@@ -32,7 +33,7 @@ class	Form
 		{
 			public:
 				const char* what() const throw();
-		}
+		};
 	
 		private:
 		const std::string	_name;
@@ -41,5 +42,5 @@ class	Form
 		const int			_gradeToExc;
 };
 
-std::ostream& operator <<(std::ostream& o, Forma const &f);
+std::ostream& operator <<(std::ostream& o, Form const &f);
 #endif

@@ -85,7 +85,7 @@ void beSigned(Bureaucrat b)
 	try 
 	{
 		if (_signed == true)
-			throw Form::Formn
+			throw Form::FormAlreadySignedException();
 		if (b.getGrade > _gradeToSign)
 			throw Form::GradeTooLowException();
 		else

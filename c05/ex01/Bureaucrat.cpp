@@ -73,7 +73,25 @@ void	Bureaucrat::moveDownTheLadder(void)
 
 // Sign
 
-
+void signForm(Form f)
+{
+	try
+	{
+		if (f._signed == true)
+			throw Form::FormAlreadySignedException();
+		if (getGrade > f._gradeToSign)
+			throw Form::GradeTooLowException();
+		else
+		{
+			_signed = true;
+			std::cout << b.getName() << " signed " << this.getName() << std::endl;
+		}
+	}
+	catch (std::exception &e)
+	{
+		std::cout << b.getName() << " coulnd't sign " << this.getName() << " because "<< e.what() << std::endl;
+	}
+}
 
 // Exceptions
 
@@ -94,9 +112,3 @@ std::ostream& operator<<(std::ostream& o, Bureaucrat const &b)
 	o << b.getGrade();
 	return (o);
 }
-
-/*std::ostream& operator<<(std::ostream& o, Bureaucrat const &bStr)
-{
-	o << bStr.getName();
-	return (o);
-}*/
