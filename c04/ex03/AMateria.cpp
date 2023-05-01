@@ -30,9 +30,9 @@ AMateria::~AMateria(void)
 	std::cout << "AMateria	: Destructor" << std::endl;
 }
 
-// get
+// Get
 
-std::string const & AMateria::getType(void)
+std::string const & AMateria::getType(void) const
 {
 	return (_type);
 }
@@ -41,5 +41,5 @@ std::string const & AMateria::getType(void)
 
 void	AMateria::use(ICharacter& target)
 {
-	 std::cout << target << std::endl;
+	 std::cout << "AMateria	: use fonction" << std::endl;
 }

@@ -27,12 +27,12 @@ Ice::~Ice(void)
 
 // Public Member Function
 
-void	Cure::use(ICharacter& target)
-{
-	 std::cout << "heals " << target.name << "'s wounds" << std::endl;
-}
-
 AMateria* Ice::clone(void) const
 {
 	return(new Ice());
+}
+
+void	Ice::use(ICharacter& target)
+{
+	 std::cout << "Ice : *shoots an ice bolt at* "<< target.name << std::endl;
 }

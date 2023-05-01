@@ -2,6 +2,11 @@ NAME		= Interface
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
 SRC			= main.cpp \
+			  AMateria.cpp\
+			  Character.cpp\
+			  Cure.cpp\
+			  Ice.cpp\
+			  MateriaSource.cpp
 OBJ			= $(SRC:.cpp=.o)
 # ==============================================================================
 

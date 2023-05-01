@@ -13,7 +13,7 @@ Cure::Cure(const Cure &rhs)
 	*this = rhs;
 }
 
-Cure& operator=(const Cure &rhs)
+Cure& Cure::operator=(const Cure &rhs)
 {
 	std::cout << "Cure	: Copy operator" << std::endl;
 	_type = rhs._type;
@@ -27,12 +27,14 @@ Cure::~Cure(void)
 
 // Public Member Function
 
-void	Cure::use(ICharacter& target)
-{
-	 std::cout << "Ice	:  shoots an ice bolt at" << target.name << std::endl;
-}
-
 AMateria*	Cure::clone(void) const
 {
 	return (new Cure());
 }
+
+void	Cure::use(ICharacter& target)
+{
+	 std::cout << "Cure	: * heals* " << target.name << "'s wounds *" << std::endl;
+}
+
+
