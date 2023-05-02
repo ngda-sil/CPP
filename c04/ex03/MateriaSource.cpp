@@ -16,7 +16,8 @@ MateriaSource::MateriaSource(const MateriaSource &rhs)
 MateriaSource& MateriaSource::operator=(const MateriaSource	&rhs)
 {
 	std::cout << "MateriaSource	: Copy operator" << std::endl;
-	_copy = rhs._copy;
+	for (int i = 0; i < 4; i++)
+		_copy[i] = rhs._copy[i];
 	return(*this);
 }
 
@@ -25,17 +26,33 @@ MateriaSource::~MateriaSource(void)
 	std::cout << "MateriaSource	: Destructor" << std::endl;
 }
 
-// Public Member Functions
 
-void	MateriaSource::learnMateria(AMateria *m)
+// Get
+
+std::string MateriaSource::getCopyType(void)
 {
-	_copy = m;
+	return(_copy[0]->getType());
 }
 
-AMateria* createMateria(std::string const & type)
+// Public Member Functions
+
+void MateriaSource::learnMateria(AMateria *m)
 {
-	if ((type == "ice" && _copy._type == "ice")|| (type == "cure" && _copy._type == "cure"))
-		return(_copy);
-	else
-		return(NULL);
+	// check si la materia existe
+	for (int i = 0; i < 4; i++)
+	{
+		if (_copy[i] == NULL)
+		{
+			_copy[i] = m->clone();
+			break;
+		}
+	}
+}
+
+AMateria* MateriaSource::createMateria(std::string const & type)
+{
+	for (int i = 0; i < 4; i++)
+		if (type == _copy[i]->getType())
+			return (_copy[i]->clone());	
+	return(NULL);
 }

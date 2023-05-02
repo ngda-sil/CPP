@@ -1,4 +1,4 @@
-#include "Character"
+#include "Character.hpp"
 
 //Canonical
 
@@ -16,9 +16,9 @@ Character::Character(const Character &rhs)
 Character& Character::operator=(const Character &rhs)
 {
 	std::cout << "Character	: Copy operator" << std::endl;
-	_name = rhs.name;
-	for (int i =0; i < 4; i++)
-		_inventory[i] = rhs.inventory[i];
+	_name = rhs._name;
+	for (int i = 0; i < 4; i++)
+		_inventory[i] = rhs._inventory[i];
 	return (*this);
 }
 
@@ -29,7 +29,7 @@ Character::~Character(void)
 
 // Public menmber fonctions
 
-std::string const & Character::getName(void)
+std::string const & Character::getName(void) const
 {
 	return(_name);
 }
@@ -38,30 +38,24 @@ void Character::equip(AMateria *m)
 {
 	// check si la materia existe
 	
-	for (i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		if (_inventory[i] == NULL)
 		{
-			_inventory[i] = m;
+			_inventory[i] = m->clone();
 			break;
 		}
 	}
 }
 
-void Character::unequip(AMateria *m)
+void Character::unequip(int idx)
 {
-	for (i = 0; i < 4; i++)
-	{
-		if (_inventory[i] == m)
-		{
-			_inventory[i] = NULL;
-			break;
-		}
-	}
+	if (_inventory[idx] != NULL)
+		_inventory[idx] = 0;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
 	if (_inventory[idx] != NULL)
-		_inventory[idx].use(target);
+		_inventory[idx]->use(target);
 }

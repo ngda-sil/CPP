@@ -18,7 +18,7 @@ AMateria::AMateria(const AMateria &rhs)
 	*this = rhs;
 }
 
-AMateria& operator=(const AMateria &rhs)
+AMateria& AMateria::operator=(const AMateria &rhs)
 {
 	std::cout << "AMateria	: Copy operator" << std::endl;
 	_type = rhs._type;
@@ -41,5 +41,5 @@ std::string const & AMateria::getType(void) const
 
 void	AMateria::use(ICharacter& target)
 {
-	 std::cout << "AMateria	: use fonction" << std::endl;
+	 std::cout << "AMateria	: use fonction on " << target.getName() << std::endl;
 }

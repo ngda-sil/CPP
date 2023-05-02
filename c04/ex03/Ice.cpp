@@ -13,7 +13,7 @@ Ice::Ice(const Ice &rhs)
 	*this = rhs;
 }
 
-Ice& operator=(const Ice &rhs)
+Ice& Ice::operator=(const Ice &rhs)
 {
 	std::cout << "Ice	: Copy operator" << std::endl;
 	_type = rhs._type;
@@ -34,5 +34,5 @@ AMateria* Ice::clone(void) const
 
 void	Ice::use(ICharacter& target)
 {
-	 std::cout << "Ice : *shoots an ice bolt at* "<< target.name << std::endl;
+	 std::cout << "Ice : *shoots an ice bolt at* "<< target.getName() << std::endl;
 }
