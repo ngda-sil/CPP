@@ -1,6 +1,6 @@
 NAME		= Interface 
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -g3 -pedantic
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -g3 -pedantic #-fsanitize=address
 SRC			= main.cpp \
 			  AMateria.cpp\
 			  Character.cpp\

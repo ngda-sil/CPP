@@ -2,27 +2,27 @@
 
 // Canonical
 
-Cure::Cure(void) : _type("cure")
+Cure::Cure(void) : AMateria("cure")
 {
-	std::cout << "Cure	: Constructor" << std::endl;
+	//std::cout << "Cure	: Constructor" << std::endl;
 }
 
-Cure::Cure(const Cure &rhs)
+Cure::Cure(const Cure &rhs) 
 {
-	std::cout << "Cure	: Copy constructor" << std::endl;
+	//std::cout << "Cure	: Copy constructor" << std::endl;
 	*this = rhs;
 }
 
 Cure& Cure::operator=(const Cure &rhs)
 {
-	std::cout << "Cure	: Copy operator" << std::endl;
-	_type = rhs._type;
+	//std::cout << "Cure	: Copy operator" << std::endl;
+	_type = rhs._type; // -> en vrai grave inutile parce que le type est normalement tjs le meme ->(void) rhs aussi ok;
 	return (*this);
 }
 
 Cure::~Cure(void)
 {
-	std::cout << "Cure	: Destructor" << std::endl;
+//	std::cout << "Cure	: Destructor" << std::endl;
 }
 
 // Public Member Function
