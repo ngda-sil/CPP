@@ -2,22 +2,21 @@
 
 // Canonical
 
-Bureaucrat::Bureaucrat(int grade, std::string name)
+Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name)
 {
 	setGrade(grade);
-	setName(name);
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &rhs)
+Bureaucrat::Bureaucrat(const Bureaucrat &rhs) : _grade(rhs.getGrade()), _name(rhs.getName())
 {
-	_grade = rhs.getGrade();
-	_name = rhs.getName();
 }
 
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat &rhs)
 {
+	// Name is const and cannot be copied
+
 	_grade = rhs.getGrade();
-	_name = rhs.getName();
+	
 	return(*this);
 }
 
@@ -54,11 +53,6 @@ std::string	Bureaucrat::getName(void) const
 	return (_name);
 }
 
-void Bureaucrat::setName(std::string name)
-{
-	_name = name;
-}
-
 // moveUp and Down
 
 void	Bureaucrat::moveUpTheLadder(void)
@@ -73,23 +67,25 @@ void	Bureaucrat::moveDownTheLadder(void)
 
 // Sign
 
-void signForm(Form f)
+void Bureaucrat::signForm(Form &f)
 {
 	try
 	{
-		if (f._signed == true)
+		if (f.isSigned() == true)
 			throw Form::FormAlreadySignedException();
-		if (getGrade > f._gradeToSign)
-			throw Form::GradeTooLowException();
+		if ( _grade  >  f.getToSign())
+			throw Bureaucrat::GradeTooLowException();
+		if (_grade < 1)
+			throw Bureaucrat::GradeTooHighException();
 		else
 		{
-			_signed = true;
-			std::cout << b.getName() << " signed " << this.getName() << std::endl;
+			f.beSigned(*this);
+			std::cout << getName() << " signed " << f.getName() << std::endl;
 		}
 	}
 	catch (std::exception &e)
 	{
-		std::cout << b.getName() << " coulnd't sign " << this.getName() << " because "<< e.what() << std::endl;
+		std::cout << getName() << " coulnd't sign " << f.getName() << " because "<< e.what() << std::endl;
 	}
 }
 
@@ -97,12 +93,12 @@ void signForm(Form f)
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-		return("Grade too high");
+	return("B : Grade too high");
 }
 
 const char 	*Bureaucrat::GradeTooLowException::what() const throw()
 {
-		return("Grade too low");
+	return("B : Grade too low");
 }
 
 // ostream

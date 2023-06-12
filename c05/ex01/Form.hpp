@@ -5,7 +5,9 @@
 # include <exception>
 # include "Bureaucrat.hpp"
 
-enum Function { ToSign = 0, ToExc = 1};
+enum State {SIGN = 0, EXC = 1};
+
+class Bureaucrat;
 
 class	Form
 {
@@ -15,14 +17,13 @@ class	Form
 		Form& operator=(const Form &rhs);
 		~Form(void);
 
-		std::string	getName(void) const;
+	 	std::string	getName(void) const;
 		int			getToSign(void) const;
 		int			getToExc(void) const;
-		bool 		isSign(void) const;
+		bool 				isSigned(void) const;
 
-		void		setGrade(int grade);
-
-		void		beSigned(Bureaucrat b);
+		int		setGrade(int grade);
+		void		beSigned(Bureaucrat &b);
 
 		class		GradeTooHighException : public std::exception
 		{
@@ -30,6 +31,11 @@ class	Form
 				const char* what() const throw();
 		};
 		class		GradeTooLowException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+		class		FormAlreadySignedException : public std::exception
 		{
 			public:
 				const char* what() const throw();

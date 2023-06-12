@@ -2,29 +2,19 @@
 
 // Canonical
 
-Form::Form(std::string name, int toSign, int toExc)
+Form::Form(std::string name, int toSign, int toExc) : _name(name), _signed(false), _gradeToSign(setGrade(toSign)), _gradeToExc(setGrade(toExc))
 {
-	_name = name;
-	_signed = false;
-	setToSign(toSign);
-	setToExc(toExc);
 }
 
-Form::Form(const Form &rhs)
+Form::Form(const Form &rhs) : _name(rhs._name), _signed(rhs._signed), _gradeToSign(rhs._gradeToSign), _gradeToExc(rhs._gradeToExc) 
 {
-	_name = rhs._name;
-	_signed = rhs._signed;
-	_gradeToSign = rhs._gradeToSign;
-	_gradeToExc = rhs._gradeToExc;
 }
 
 Form& Form::operator=(const Form &rhs)
 {
-	_name = rhs._name;
-	_signed = rhs._signed;
-	_gradeToSign = rhs._gradeToSign;
-	_gradeToExc = rhs._gradeToExc;
-	
+	//only _signed can be copied
+	_signed = rhs.isSigned();
+
 	return(*this);
 }
 
@@ -49,14 +39,14 @@ int Form::getToExc(void) const
 	return(_gradeToExc);
 }
 
-bool Form::isSign(void) const
+bool Form::isSigned(void) const
 {
 	return(_signed);
 }
 
 // Set
 
-void Form::setGrade(int grade, Function f)
+int Form::setGrade(int grade)
 {
 	try 
 	{
@@ -64,39 +54,33 @@ void Form::setGrade(int grade, Function f)
 			throw Form::GradeTooHighException();
 		else if (grade > 150)
 			throw Form::GradeTooLowException();
-		else 
-		{
-			if (f = ToSign)
-				_gradeToSign = grade;
-			if (f = ToExc)
-				_gradeToExc = grade;
-		}
 	}
 	catch (std::exception &e)
 	{
 		std::cout << "Error : " << e.what() << std::endl;
 	}
+	return (grade);
 }
 
 // Public Member Functions
 
-void beSigned(Bureaucrat b)
+void Form::beSigned(Bureaucrat &b)
 {
 	try 
 	{
 		if (_signed == true)
 			throw Form::FormAlreadySignedException();
-		if (b.getGrade > _gradeToSign)
+		else if (b.getGrade() > _gradeToSign)
 			throw Form::GradeTooLowException();
 		else
 		{
 			_signed = true;
-			std::cout << b.getName() << " signed " << this.getName() << std::endl;
+			std::cout << "Bureaucrat "<< b.getName() << " signed form " << getName() << std::endl;
 		}
 	}
 	catch (std::exception &e)
 	{
-		std::cout << b.getName() << " coulnd't sign " << this.getName() << " because "<< e.what() << std::endl;
+		std::cout << b.getName() << " coulnd't sign " << getName() << " because "<< e.what() << std::endl;
 	}
 }
 
@@ -104,17 +88,17 @@ void beSigned(Bureaucrat b)
 
 const char *Form::GradeTooHighException::what() const throw()
 {
-	return("Grade too high");
+	return("F : Grade too high");
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return("Grade too low");
+	return("F : Grade too low");
 }
 
 const char *Form::FormAlreadySignedException::what() const throw()
 {
-	return("Form already signed");
+	return("F : Form already signed");
 }
 
 // ostream

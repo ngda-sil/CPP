@@ -5,8 +5,9 @@ int main()
 {
 	Bureaucrat	a(22, "Jean");
 	Bureaucrat	b(150, "Janine");
+	Bureaucrat  g(12, "Louis");
 	Bureaucrat	c(1, "Marc");
-	Form		e("Permis de swag, 12, 30");
+	Form		e("Permis de swag", 12, 30);
 
 	std::cout << "B: "<< a.getName() << " grade : "<< a.getGrade() << std::endl;
 	a.moveUpTheLadder();
@@ -24,11 +25,14 @@ int main()
 	Bureaucrat d(0, "Chris");
 	
 	std::cout << "Erreur a l'instanctiation 412" << std::endl;
-	Bureaucrat e(412, "Charlotte");
+	Bureaucrat f(412, "Charlotte");
 
 	d.moveDownTheLadder();
 	std::cout << "B: "<< d.getName() << " grade : "<< d.getGrade() << std::endl;
 	
 	b.signForm(e);
+	c.signForm(e);
+	std::cout << e.isSigned() << std::endl;
+	g.signForm(e);
 	return(0);
 }
