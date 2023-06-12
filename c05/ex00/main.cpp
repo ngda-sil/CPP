@@ -18,10 +18,11 @@ int main()
 	c.moveUpTheLadder();
 	std::cout << "B: "<< c.getName() << " grade : "<< c.getGrade() << std::endl;
 	
-	std::cout << "Erreur a l'instanctiation -12" << std::endl;
-	Bureaucrat d(0, "Chris");
+	std::cout << "Erreur a l'instanciation de -12 : ";
+	Bureaucrat d(-12, "Chris");
+	std::cout << "B: "<< d.getName() << " grade : "<< d.getGrade() << std::endl;
 	
-	std::cout << "Erreur a l'instanctiation 412" << std::endl;
+	std::cout << "Erreur a l'instanciation de 412 : ";
 	Bureaucrat e(412, "Charlotte");
 
 	d.moveDownTheLadder();

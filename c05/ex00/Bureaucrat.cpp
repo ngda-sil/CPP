@@ -91,9 +91,3 @@ std::ostream& operator<<(std::ostream& o, Bureaucrat const &b)
 	o << b.getGrade();
 	return (o);
 }
-
-/*std::ostream& operator<<(std::ostream& o, Bureaucrat const &bStr)
-{
-	o << bStr.getName();
-	return (o);
-}*/
