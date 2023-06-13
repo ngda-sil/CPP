@@ -5,6 +5,18 @@ PresidentialPardon::PresidentialPardon(const std::string target) : Form("Preside
 {
 }
 
+PresidentialPardon::PresidentialPardon(const PresidentialPardon &rhs) : Form(rhs), _target(rhs._target)
+{
+}
+
+PresidentialPardon& PresidentialPardon::operator=(const PresidentialPardon &rhs)
+{
+	//only _signed can be copied
+	_signed = rhs.isSigned();
+
+	return(*this);
+}
+
 PresidentialPardon::~PresidentialPardon(void)
 {
 }

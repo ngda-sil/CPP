@@ -5,6 +5,18 @@ RobotomyRequest::RobotomyRequest(const std::string target) : Form("Robotomy Requ
 {
 }
 
+RobotomyRequest::RobotomyRequest(const RobotomyRequest &rhs) : Form(rhs), _target(rhs._target)
+{
+}
+
+RobotomyRequest& RobotomyRequest::operator=(const RobotomyRequest &rhs)
+{
+	//only _signed can be copied
+	_signed = rhs.isSigned();
+
+	return(*this);
+}
+
 RobotomyRequest::~RobotomyRequest(void)
 {
 }

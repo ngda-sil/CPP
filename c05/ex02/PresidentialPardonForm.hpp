@@ -9,8 +9,8 @@ class PresidentialPardon : public Form
 {
 	public:
 			PresidentialPardon(const std::string target);
-			/*PresidentialPardon(const PresidentialPardon &rhs);
-			PresidentialPardon& operator=(const PresidentialPardon &rhs);*/
+			PresidentialPardon(const PresidentialPardon &rhs);
+			PresidentialPardon& operator=(const PresidentialPardon &rhs);
 			~PresidentialPardon(void);
 
 			 void execute(Bureaucrat const & executor) const;

@@ -9,8 +9,8 @@ class RobotomyRequest : public Form
 {
 	public:
 			RobotomyRequest(const std::string target);
-			/*RobotomyRequest(const RobotomyRequest &rhs);
-			RobotomyRequest& operator=(const RobotomyRequest &rhs);*/
+			RobotomyRequest(const RobotomyRequest &rhs);
+			RobotomyRequest& operator=(const RobotomyRequest &rhs);
 			~RobotomyRequest(void);
 
 			 void execute(Bureaucrat const & executor) const;

@@ -5,6 +5,19 @@ ShrubberyCreation::ShrubberyCreation(const std::string target) : Form("Shrubbery
 {
 }
 
+ShrubberyCreation::ShrubberyCreation(const ShrubberyCreation &rhs) : Form(rhs), _target(rhs._target)
+{
+}
+
+ShrubberyCreation& ShrubberyCreation::operator=(const ShrubberyCreation &rhs)
+{
+	//only _signed can be copied
+	_signed = rhs.isSigned();
+
+	return(*this);
+}
+
+
 ShrubberyCreation::~ShrubberyCreation(void)
 {
 }

@@ -16,16 +16,14 @@
 "       |.|        | |         | |\n"\
 " \\/ ._\\//_/__/  ,\\_//__\\/.  \\_//__/_\n"\
 
-
-
 class Bureaucrate;
 
 class ShrubberyCreation : public Form
 {
 	public:
 			ShrubberyCreation(const std::string target);
-			/*ShrubberyCreation(const ShrubberyCreation &rhs);
-			ShrubberyCreation& operator=(const ShrubberyCreation &rhs);*/
+			ShrubberyCreation(const ShrubberyCreation &rhs);
+			ShrubberyCreation& operator=(const ShrubberyCreation &rhs);
 			~ShrubberyCreation(void);
 
 			 void execute(Bureaucrat const & executor) const;
