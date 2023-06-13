@@ -2,22 +2,19 @@
 
 // Canonical
 
-Bureaucrat::Bureaucrat(int grade, std::string name)
+Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name)
 {
 	setGrade(grade);
-	setName(name);
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &rhs)
 {
 	_grade = rhs.getGrade();
-	_name = rhs.getName();
 }
 
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat &rhs)
 {
 	_grade = rhs.getGrade();
-	_name = rhs.getName();
 	return(*this);
 }
 
@@ -52,11 +49,6 @@ void Bureaucrat::setGrade(int grade)
 std::string	Bureaucrat::getName(void) const
 {
 	return (_name);
-}
-
-void Bureaucrat::setName(std::string name)
-{
-	_name = name;
 }
 
 // moveUp and Down

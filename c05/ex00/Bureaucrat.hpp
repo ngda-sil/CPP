@@ -15,7 +15,6 @@ class Bureaucrat
 			int			getGrade(void) const;
 			void		setGrade(int grade);
 			std::string	getName(void) const;
-			void		setName(std::string name);
 
 			void		moveUpTheLadder(void);
 			void		moveDownTheLadder(void);
@@ -32,8 +31,8 @@ class Bureaucrat
 			};
 
 	private:
-			int			_grade;
-			std::string	_name;
+			int					_grade;
+			const std::string	_name;
 };
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat const &b);
