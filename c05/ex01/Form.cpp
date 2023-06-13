@@ -80,7 +80,7 @@ void Form::beSigned(Bureaucrat &b)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << b.getName() << " coulnd't sign " << getName() << " because "<< e.what() << std::endl;
+		std::cout << "beSigned : " << b.getName() << " coulnd't sign " << getName() << " because "<< e.what() << std::endl;
 	}
 }
 

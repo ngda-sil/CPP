@@ -5,13 +5,12 @@
 # include <exception>
 # include "Bureaucrat.hpp"
 
-enum State {SIGN = 0, EXC = 1};
-
 class Bureaucrat;
 
 class	Form
 {
 	public:
+
 		Form(std::string name, int toSign, int toExc);
 		Form(const Form &rhs);
 		Form& operator=(const Form &rhs);
@@ -20,9 +19,9 @@ class	Form
 	 	std::string	getName(void) const;
 		int			getToSign(void) const;
 		int			getToExc(void) const;
-		bool 				isSigned(void) const;
+		bool 		isSigned(void) const;
 
-		int		setGrade(int grade);
+		int			setGrade(int grade);
 		void		beSigned(Bureaucrat &b);
 
 		class		GradeTooHighException : public std::exception
@@ -41,7 +40,8 @@ class	Form
 				const char* what() const throw();
 		};
 	
-		private:
+	private:
+
 		const std::string	_name;
 		bool				_signed;
 		const int			_gradeToSign;
@@ -49,4 +49,5 @@ class	Form
 };
 
 std::ostream& operator <<(std::ostream& o, Form const &f);
+
 #endif

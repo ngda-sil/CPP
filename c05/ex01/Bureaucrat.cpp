@@ -69,24 +69,7 @@ void	Bureaucrat::moveDownTheLadder(void)
 
 void Bureaucrat::signForm(Form &f)
 {
-	try
-	{
-		if (f.isSigned() == true)
-			throw Form::FormAlreadySignedException();
-		if ( _grade  >  f.getToSign())
-			throw Bureaucrat::GradeTooLowException();
-		if (_grade < 1)
-			throw Bureaucrat::GradeTooHighException();
-		else
-		{
-			f.beSigned(*this);
-			std::cout << getName() << " signed " << f.getName() << std::endl;
-		}
-	}
-	catch (std::exception &e)
-	{
-		std::cout << getName() << " coulnd't sign " << f.getName() << " because "<< e.what() << std::endl;
-	}
+	f.beSigned(*this);
 }
 
 // Exceptions
