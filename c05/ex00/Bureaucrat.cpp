@@ -32,25 +32,12 @@ int	Bureaucrat::getGrade(void) const
 
 void Bureaucrat::setGrade(int grade)
 {
-	try
-	{
-		if (grade < 1)
-		{
-			_grade = 1;
-			throw Bureaucrat::GradeTooHighException();
-		}
-		else if (grade > 150)
-		{
-			_grade = 150;
-			throw Bureaucrat::GradeTooLowException();
-		}
-		else
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else
 			_grade = grade;
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << RED << e.what() << RESET << std::endl;	
-	}
 }
 
 std::string	Bureaucrat::getName(void) const
@@ -77,12 +64,12 @@ void	Bureaucrat::moveDownTheLadder(void)
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-		return("Bureaucrat::Grade too high → grade automatically set to 1");
+		return("Bureaucrat::Grade too high\n");
 }
 
 const char 	*Bureaucrat::GradeTooLowException::what() const throw()
 {
-		return("Bureaucrat::Grade too low  → grade automatically set to 150");
+		return("Bureaucrat::Grade too low\n");
 }
 
 // ostream
