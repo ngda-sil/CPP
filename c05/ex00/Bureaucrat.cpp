@@ -2,8 +2,9 @@
 
 // Canonical
 
-Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name)
+Bureaucrat::Bureaucrat(int grade, const std::string name) : _name(name)
 {
+	std::cout << CYAN << _name << " Default constructor called with grade : " << grade << RESET << std::endl;
 	setGrade(grade);
 }
 
@@ -34,15 +35,21 @@ void Bureaucrat::setGrade(int grade)
 	try
 	{
 		if (grade < 1)
+		{
+			_grade = 1;
 			throw Bureaucrat::GradeTooHighException();
+		}
 		else if (grade > 150)
+		{
+			_grade = 150;
 			throw Bureaucrat::GradeTooLowException();
+		}
 		else
 			_grade = grade;
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "Error : " << e.what() << std::endl;	
+		std::cerr << RED << "Error : " << e.what() << RESET << std::endl;	
 	}
 }
 
@@ -55,11 +62,13 @@ std::string	Bureaucrat::getName(void) const
 
 void	Bureaucrat::moveUpTheLadder(void)
 {
+	std::cout << CYAN << _name << " moveUpTheLadder called" << RESET << std::endl;
 	setGrade(getGrade() - 1);
 }
 
 void	Bureaucrat::moveDownTheLadder(void)
 {
+	std::cout << CYAN << _name << " moveDownTheLadder called" << RESET << std::endl;
 	setGrade(getGrade() + 1);
 }
 
@@ -68,12 +77,12 @@ void	Bureaucrat::moveDownTheLadder(void)
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-		return("Grade too high");
+		return("Grade too high → grade automatically set to 1");
 }
 
 const char 	*Bureaucrat::GradeTooLowException::what() const throw()
 {
-		return("Grade too low");
+		return("Grade too low  → grade automatically set to 150");
 }
 
 // ostream

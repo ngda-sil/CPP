@@ -4,10 +4,15 @@
 # include <iostream>
 # include <exception>
 
+# define RESET		"\033[0m"
+# define RED		"\033[31m"
+# define YELLOW		"\033[33m"
+# define CYAN		"\033[36m"
+
 class Bureaucrat
 {
 	public:
-			Bureaucrat(int grade, std::string name);
+			Bureaucrat(int grade, const std::string name);
 			Bureaucrat(const Bureaucrat &rhs);
 			Bureaucrat& operator=(const Bureaucrat & rhs);
 			~Bureaucrat(void);
@@ -24,6 +29,7 @@ class Bureaucrat
 				public:
 					const char* what() const throw();
 			};
+			
 			class		GradeTooLowException : public std::exception
 			{
 				public:

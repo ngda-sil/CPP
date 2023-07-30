@@ -5,28 +5,45 @@ int main()
 	Bureaucrat a(22, "Jean");
 	Bureaucrat b(150, "Janine");
 	Bureaucrat c(1, "Marc");
-	
-	std::cout << "B: "<< a.getName() << " grade : "<< a.getGrade() << std::endl;
-	a.moveUpTheLadder();
-	std::cout << "B: "<< a.getName() << " grade : "<< a.getGrade() << std::endl;
-	
-	std::cout << "B: "<< b.getName() << " grade : "<< b.getGrade() << std::endl;
-	b.moveDownTheLadder();
-	std::cout << "B: "<< b.getName() << " grade : "<< b.getGrade() << std::endl;
-	
-	std::cout << "B: "<< c.getName() << " grade : "<< c.getGrade() << std::endl;
-	c.moveUpTheLadder();
-	std::cout << "B: "<< c.getName() << " grade : "<< c.getGrade() << std::endl;
-	
-	std::cout << "Erreur a l'instanciation de -12 : ";
-	Bureaucrat d(-12, "Chris");
-	std::cout << "B: "<< d.getName() << " grade : "<< d.getGrade() << std::endl;
-	
-	std::cout << "Erreur a l'instanciation de 412 : ";
-	Bureaucrat e(412, "Charlotte");
 
-	d.moveDownTheLadder();
-	std::cout << "B: "<< d.getName() << " grade : "<< d.getGrade() << std::endl;
+	std::cout << std::endl;
 	
+	// change grade up and down normal cases
+	std::cout << YELLOW << "moveUpTheLadder normal case" << RESET << std::endl;
+	std::cout << "B: "<< a.getName() << " Grade : "<< a.getGrade() << std::endl;
+	a.moveUpTheLadder();
+	std::cout << "B: "<< a.getName() << " Grade : "<< a.getGrade() << std::endl;
+	std::cout << std::endl;
+
+	std::cout << YELLOW << "moveDownTheLadder normal case" << RESET << std::endl;
+	std::cout << "B: "<< a.getName() << " Grade : "<< a.getGrade() << std::endl;
+	a.moveDownTheLadder();
+	std::cout << "B: "<< a.getName() << " Grade : "<< a.getGrade() << std::endl;
+	std::cout << std::endl;
+
+	// grade < 1 : errors 
+	std::cout << YELLOW <<  "Grade < 1 : moveUpTheLadder" << RESET << std::endl;
+	std::cout << "B: "<< c.getName() << " Grade : "<< c.getGrade() << std::endl;
+	c.moveUpTheLadder();
+	std::cout << "B: "<< c.getName() << " Grade : "<< c.getGrade() << std::endl;
+	std::cout << std::endl;
+
+	std::cout << YELLOW << "Grade < 1 : instantiation -12" << RESET << std::endl;
+	Bureaucrat d(-12, "Chris");
+	std::cout << "B: "<< d.getName() << " Grade : "<< d.getGrade() << std::endl;
+	std::cout << std::endl;
+
+	// grade > 150 : errors
+	std::cout << YELLOW << "Grade > 150 : moveDownTheLadder" << RESET << std::endl;
+	std::cout << "B: "<< b.getName() << " Grade : "<< b.getGrade() << std::endl;
+	b.moveDownTheLadder();
+	std::cout << "B: "<< b.getName() << " Grade : "<< b.getGrade() << std::endl;
+	std::cout << std::endl;
+
+	std::cout << YELLOW << "Grade > 150 : instantiation 412" << RESET << std::endl;
+	Bureaucrat f(412, "Charlotte");
+	std::cout << "B: "<< f.getName() << " Grade : "<< f.getGrade() << std::endl;
+	std::cout << std::endl;
+
 	return(0);
 }
