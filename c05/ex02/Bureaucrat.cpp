@@ -1,9 +1,11 @@
 #include "Bureaucrat.hpp"
 
+
 // Canonical
 
 Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name)
 {
+	std::cout << CYAN << _name << " Default constructor called with grade : " << grade << RESET << std::endl;
 	setGrade(grade);
 }
 
@@ -33,19 +35,12 @@ int	Bureaucrat::getGrade(void) const
 
 void Bureaucrat::setGrade(int grade)
 {
-	try
-	{
-		if (grade < 1)
-			throw Bureaucrat::GradeTooHighException();
-		else if (grade > 150)
-			throw Bureaucrat::GradeTooLowException();
-		else
-			_grade = grade;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Error : " << e.what() << std::endl;	
-	}
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else
+		_grade = grade;
 }
 
 std::string	Bureaucrat::getName(void) const
@@ -57,38 +52,44 @@ std::string	Bureaucrat::getName(void) const
 
 void	Bureaucrat::moveUpTheLadder(void)
 {
+	std::cout << CYAN << _name << " moveUpTheLadder called" << RESET << std::endl;
 	setGrade(getGrade() - 1);
 }
 
 void	Bureaucrat::moveDownTheLadder(void)
 {
+	std::cout << CYAN << _name << " moveDownTheLadder called" << RESET << std::endl;
 	setGrade(getGrade() + 1);
 }
 
 // Sign
 
-void Bureaucrat::signForm(Form &f)
-{
-	f.beSigned(*this);
-}
-
-// Execute
-void Bureaucrat::executeForm(Form const &f)
+void	Bureaucrat::signForm(Form &f) 
 {
 	try
 	{
-		if (f.isSigned() == false)
-			throw Form::NotSignedException();
-		else if (_grade > f.getToExc())
-			throw Form::GradeTooLowException();
-		else
-		{
-			f.execute(*this);
-		}
+		f.beSigned(*this);
+		std::cout << GREEN << *this << " signed " << f.getName() << RESET << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << _name << " counldn't execute " << f.getName() << " because " << e.what() << std::endl;
+		std::cerr << RED << *this << " couldn't sign " << f.getName() << " because "<< e.what() << RESET << std::endl;
+	}
+	
+}
+
+// Execute
+
+void	Bureaucrat::executeForm(Form const &f)
+{
+	try
+	{
+		f.execute(*this);
+		std::cout << GREEN << *this << " executed " << f.getName() << RESET << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << *this << " couldn't execute " << f.getName() << " because "<< e.what() << RESET << std::endl;
 	}
 }
 
@@ -96,18 +97,18 @@ void Bureaucrat::executeForm(Form const &f)
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return("B : Grade too high");
+	return("Bureaucrat::Grade too high");
 }
 
 const char 	*Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return("B : Grade too low");
+	return("Bureaucrat::Grade too low");
 }
 
 // ostream
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat const &b)
 {
-	o << b.getGrade();
+	o << b.getName() << ", bureaucrat grade : "<< b.getGrade() << ".";
 	return (o);
 }

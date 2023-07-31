@@ -13,13 +13,10 @@ class PresidentialPardon : public Form
 			PresidentialPardon& operator=(const PresidentialPardon &rhs);
 			~PresidentialPardon(void);
 
-			 void execute(Bureaucrat const & executor) const;
+			void execute(Bureaucrat const & executor) const;
 	
 	private:
 			const std::string	_target;
 };
 
 #endif
-
-
-

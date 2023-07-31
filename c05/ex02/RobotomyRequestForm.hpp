@@ -2,6 +2,7 @@
 # define ROBOTOMYREQUESTFORM_HPP
 
 # include "Form.hpp"
+# include <cstdlib>
 
 class Bureaucrate;
 
