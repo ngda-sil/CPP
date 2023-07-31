@@ -2,37 +2,38 @@
 #include "Form.hpp"
 
 int main()
-{
-	Bureaucrat	a(22, "Jean");
-	Bureaucrat	b(150, "Janine");
-	Bureaucrat  g(12, "Louis");
-	Bureaucrat	c(1, "Marc");
-	Form		e("Permis de swag", 12, 30);
+{	
+	for (int i = 0; i < 5; i++)
+	{
+		std::cout << "-----------------------------------------" << std::endl;
+		try
+		{
+			Bureaucrat	a(12, "Jean");
+			Bureaucrat	b(150, "Janine");
+			Form		c("Permis de swag", 12, 30);
+		
+			if (i == 1)
+				Bureaucrat d(-12, "Chris");
+			if (i == 2)
+				b.moveDownTheLadder();
+			if (i == 3)
+				Form d("Secret Form", 0, 12);
+			if (i == 4)
+				Form d(" Top Secret Form", 151, 12);
 
-	std::cout << "B: "<< a.getName() << " grade : "<< a.getGrade() << std::endl;
-	a.moveUpTheLadder();
-	std::cout << "B: "<< a.getName() << " grade : "<< a.getGrade() << std::endl;
-	
-	std::cout << "B: "<< b.getName() << " grade : "<< b.getGrade() << std::endl;
-	b.moveDownTheLadder();
-	std::cout << "B: "<< b.getName() << " grade : "<< b.getGrade() << std::endl;
-	
-	std::cout << "B: "<< c.getName() << " grade : "<< c.getGrade() << std::endl;
-	c.moveUpTheLadder();
-	std::cout << "B: "<< c.getName() << " grade : "<< c.getGrade() << std::endl;
-	
-	std::cout << "Erreur a l'instanctiation -12" << std::endl;
-	Bureaucrat d(0, "Chris");
-	
-	std::cout << "Erreur a l'instanctiation 412" << std::endl;
-	Bureaucrat f(412, "Charlotte");
-
-	d.moveDownTheLadder();
-	std::cout << "B: "<< d.getName() << " grade : "<< d.getGrade() << std::endl;
-	
-	b.signForm(e);
-	c.signForm(e);
-	std::cout << e.isSigned() << std::endl;
-	g.signForm(e);
+			std::cout << c << std::endl;
+		
+			b.signForm(c);
+			std::cout << c << std::endl;
+			a.signForm(c);
+			std::cout << c << std::endl;
+			b.signForm(c);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << RED << e.what() << RESET << std::endl;
+		}
+		std::cout << "-----------------------------------------" << std::endl;
+	}
 	return(0);
 }

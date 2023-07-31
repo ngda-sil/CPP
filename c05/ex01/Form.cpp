@@ -48,57 +48,40 @@ bool Form::isSigned(void) const
 
 int Form::setGrade(int grade)
 {
-	try 
-	{
-		if (grade < 1)
-			throw Form::GradeTooHighException();
-		else if (grade > 150)
-			throw Form::GradeTooLowException();
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Error : " << e.what() << std::endl;
-	}
+	if (grade < 1)
+		throw Form::GradeTooHighException();
+	else if (grade > 150)
+		throw Form::GradeTooLowException();
 	return (grade);
 }
 
 // Public Member Functions
 
 void Form::beSigned(Bureaucrat &b)
-{
-	try 
-	{
-		if (_signed == true)
-			throw Form::FormAlreadySignedException();
-		else if (b.getGrade() > _gradeToSign)
-			throw Form::GradeTooLowException();
-		else
-		{
-			_signed = true;
-			std::cout << "Bureaucrat "<< b.getName() << " signed form " << getName() << std::endl;
-		}
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "beSigned : " << b.getName() << " coulnd't sign " << getName() << " because "<< e.what() << std::endl;
-	}
+{	
+	if (_signed == true)
+		throw Form::FormAlreadySignedException();
+	else if (b.getGrade() > _gradeToSign)
+		throw Form::GradeTooLowException();
+	else
+		_signed = true;
 }
 
 // Exceptions
 
 const char *Form::GradeTooHighException::what() const throw()
 {
-	return("F : Grade too high");
+	return("Form::Grade too high");
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return("F : Grade too low");
+	return("Form::Grade too low");
 }
 
 const char *Form::FormAlreadySignedException::what() const throw()
 {
-	return("F : Form already signed");
+	return("Form::Form already signed");
 }
 
 // ostream
@@ -106,5 +89,8 @@ const char *Form::FormAlreadySignedException::what() const throw()
 std::ostream& operator<<(std::ostream& o, Form const &f)
 {
 	o << f.getName();
+	if (!f.isSigned())
+		o << " not";
+	o << " signed, grade to sign : " << f.getToSign() << " grade to execute : " << f.getToExc();
 	return(o);
 }
