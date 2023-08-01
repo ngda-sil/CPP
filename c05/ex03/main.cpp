@@ -6,65 +6,82 @@
 #include "Intern.hpp"
 
 int main()
-{
-	Bureaucrat	a(22, "Jean");
-	Bureaucrat	b(150, "Janine");
-	Bureaucrat  g(12, "Louis");
-	Bureaucrat	c(1, "Marc");
-	PresidentialPardon	e("Ton père");
-	RobotomyRequest l("Le voisin");
-	ShrubberyCreation z("Garden");
-	Intern		randomIntern;
-	Form*		randomForm;
+{	
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << "-----------------------------------------" << std::endl;
+		try
+		{
+			Bureaucrat	a(12, "Jean");
+			Bureaucrat	b(150, "Janine");
+			Bureaucrat 	c(1, "Jérôme");
+			PresidentialPardon	d("Ton père");
+			RobotomyRequest e("Le voisin");
+			ShrubberyCreation f("Garden");
+			ShrubberyCreation g("Forest");
+			Intern  randomIntern;
+    		Form*   rrf;
+			Form*	rrf2;
+		
+			//Form h("Not your regular form", 4, 23); //abstract class won't compile
+			
+			if (i == 1)
+				Bureaucrat g(-12, "Chris");
+			if (i == 2)
+				b.moveDownTheLadder();
 
-	std::cout << "B: "<< a.getName() << " grade : "<< a.getGrade() << std::endl;
-	a.moveUpTheLadder();
-	std::cout << "B: "<< a.getName() << " grade : "<< a.getGrade() << std::endl;
-	
-	std::cout << "B: "<< b.getName() << " grade : "<< b.getGrade() << std::endl;
-	b.moveDownTheLadder();
-	std::cout << "B: "<< b.getName() << " grade : "<< b.getGrade() << std::endl;
-	
-	std::cout << "B: "<< c.getName() << " grade : "<< c.getGrade() << std::endl;
-	c.moveUpTheLadder();
-	std::cout << "B: "<< c.getName() << " grade : "<< c.getGrade() << std::endl;
-	
-	std::cout << "Erreur a l'instanctiation -12" << std::endl;
-	Bureaucrat d(0, "Chris");
-	
-	std::cout << "Erreur a l'instanctiation 412" << std::endl;
-	Bureaucrat f(412, "Charlotte");
+			for (int i = 0; i < 4; i++)
+			{
+				std::cout << "\n";
 
-	d.moveDownTheLadder();
-	std::cout << "B: "<< d.getName() << " grade : "<< d.getGrade() << std::endl;
-	
-	b.executeForm(e);
-	b.signForm(e);
-	c.signForm(e);
-	std::cout << e.isSigned() << std::endl;
-	g.signForm(e);
-	c.executeForm(e);
-	a.signForm(l);
-	b.executeForm(l);
-	c.executeForm(l);
-	d.executeForm(l);
-	d.executeForm(l);
-	c.executeForm(l);
-	b.executeForm(l);
-	d.executeForm(l);
-	d.executeForm(l);
+				if (i == 0)
+				{
+					std::cout << YELLOW << d << RESET << std::endl;
+					b.signForm(d);
+					a.executeForm(d);
+					a.signForm(d);
+					c.executeForm(d);
+					std::cout << YELLOW << d << RESET << std::endl;
+				}
+				if (i == 1)
+				{
+					std::cout << YELLOW << e << RESET << std::endl;
+					b.signForm(e);
+					a.signForm(e);
+					a.executeForm(e);
+					c.executeForm(e);
+					a.executeForm(e);
+					c.executeForm(e);
+				}
+				if (i == 2)
+				{
+					std::cout << YELLOW << f << RESET << std::endl;
+					c.signForm(f);
+					c.signForm(f);
+					c.executeForm(f);
+					c.signForm(g);
+					c.executeForm(g);
+				}
+				if (i == 3)
+				{
+					rrf = randomIntern.makeForm("presidential pardon", "Bender");
 
-	a.signForm(z);
-	a.executeForm(z);
-
-	randomForm = randomIntern.makeForm("404", "Bender");
-	randomForm = randomIntern.makeForm("robotomy request", "Bender");
-
-	a.signForm(*randomForm);
-	a.executeForm(*randomForm);
-	a.executeForm(*randomForm);
-
-
-	delete randomForm;
+					c.signForm(*rrf);
+					c.executeForm(*rrf);
+					delete rrf;
+					rrf2 = randomIntern.makeForm("404", "Bender");
+					c.executeForm(*rrf2);
+					
+				}
+				std::cout << "\n";
+			}
+			
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << RED << e.what() << RESET << std::endl;
+		}
+		std::cout << "-----------------------------------------" << std::endl;
+	}
 	return(0);
 }

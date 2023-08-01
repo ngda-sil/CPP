@@ -25,11 +25,17 @@ ShrubberyCreation::~ShrubberyCreation(void)
 // Fonctions membre
 
 void	ShrubberyCreation::execute(Bureaucrat const & executor) const
-{
-	std::ofstream file(_target + "_shrubbery");
+{	
+	checkPrerequisites(executor.getGrade());
 
+	std::ofstream file(_target + "_shrubbery");
+	if (!file.is_open())
+    	throw std::runtime_error("Failed to open file for writing.");
 	file << TREE;
 	file.close(); 
+}
 
-	std::cout << executor.getName() << " executed " << _name << "succesfully !" << std::endl;
+Form* ShrubberyCreation::clone(std::string target)
+{
+	return (new ShrubberyCreation(target));
 }

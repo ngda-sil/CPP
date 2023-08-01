@@ -2,6 +2,7 @@
 # define ROBOTOMYREQUESTFORM_HPP
 
 # include "Form.hpp"
+# include <cstdlib>
 
 class Bureaucrate;
 
@@ -13,8 +14,9 @@ class RobotomyRequest : public Form
 			RobotomyRequest& operator=(const RobotomyRequest &rhs);
 			~RobotomyRequest(void);
 
-			 void execute(Bureaucrat const & executor) const;
-
+			void execute(Bureaucrat const & executor) const;
+			static Form*	clone(const std::string target);
+	
 	private:
 			const std::string	_target;
 };

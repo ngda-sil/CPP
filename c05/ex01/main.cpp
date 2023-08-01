@@ -11,7 +11,7 @@ int main()
 			Bureaucrat	a(12, "Jean");
 			Bureaucrat	b(150, "Janine");
 			Form		c("Permis de swag", 12, 30);
-		
+
 			if (i == 1)
 				Bureaucrat d(-12, "Chris");
 			if (i == 2)

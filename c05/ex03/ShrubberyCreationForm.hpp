@@ -26,8 +26,9 @@ class ShrubberyCreation : public Form
 			ShrubberyCreation& operator=(const ShrubberyCreation &rhs);
 			~ShrubberyCreation(void);
 
-			 void  execute(Bureaucrat const & executor) const;
-			 	
+			void execute(Bureaucrat const & executor) const;
+			static Form*	clone(const std::string target);
+	
 	private:
 			const std::string	_target;
 };

@@ -16,7 +16,7 @@ class	Form
 		Form& operator=(const Form &rhs);
 		virtual ~Form(void);
 
-	 	virtual std::string	getName(void) const;
+	 	std::string	getName(void) const;
 		int			getToSign(void) const;
 		int			getToExc(void) const;
 		bool 		isSigned(void) const;
@@ -24,7 +24,8 @@ class	Form
 		int			setGrade(int grade);
 		void		beSigned(Bureaucrat &b);
 
-		virtual void 	execute(Bureaucrat const & executor) const = 0;
+		void			checkPrerequisites(int executorGrade) const;
+		virtual void	execute(Bureaucrat const & executor) const = 0;
 
 		class		GradeTooHighException : public std::exception
 		{
@@ -41,12 +42,19 @@ class	Form
 			public:
 				const char* what() const throw();
 		};
-		class		NotSignedException : public std::exception
+		class		FormNotSignedException : public std::exception
 		{
 			public:
-				const char* what() const throw();
+				const char * what() const throw();
 		};
-	
+
+		class		FormDoesNotExistException : public std::exception
+		{
+			public:
+				const char * what() const throw();
+
+		};
+
 	protected:
 
 		const std::string	_name;

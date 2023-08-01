@@ -58,10 +58,10 @@ int Form::setGrade(int grade)
 // Public Member Functions
 
 void Form::beSigned(Bureaucrat &b)
-{	
+{
 	if (_signed == true)
 		throw Form::FormAlreadySignedException();
-	else if (b.getGrade() > _gradeToSign)
+	if (b.getGrade() > _gradeToSign)
 		throw Form::GradeTooLowException();
 	else
 		_signed = true;

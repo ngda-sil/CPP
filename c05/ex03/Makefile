@@ -1,5 +1,5 @@
 NAME		= Intern
-CXX			= c++
+CXX			= g++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
 SRC			=	Intern.cpp\
 				PresidentialPardonForm.cpp\
@@ -19,9 +19,9 @@ $(NAME)	:	$(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean : 
-	rm -f $(OBJ)
+	rm -f $(OBJ) 
 fclean : clean
-	rm -Rf $(NAME)
+	rm -Rf $(NAME) *_shrubbery
 re : fclean all
 
 .PHONY: all clean fclean re

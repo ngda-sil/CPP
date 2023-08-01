@@ -18,9 +18,9 @@ $(NAME)	:	$(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean : 
-	rm -f $(OBJ) *_shrubbery
+	rm -f $(OBJ)
 fclean : clean
-	rm -Rf $(NAME)
+	rm -Rf $(NAME) *_shrubbery
 re : fclean all
 
 .PHONY: all clean fclean re

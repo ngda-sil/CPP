@@ -8,6 +8,15 @@
 # include "ShrubberyCreationForm.hpp"
 
 class Form;
+class PresidentialPardon;
+class RobotomyRequest;
+class ShrubberyCreation;
+
+typedef struct	s_Forms
+{
+	std::string	name;
+	Form* (*ptrToFunc) (const std::string target);
+}				t_Forms;
 
 class	Intern
 {
@@ -19,6 +28,9 @@ class	Intern
 		~Intern(void);
 
 		Form*	makeForm(const std::string formName, const std::string target);
+
+	private:
+		static const t_Forms _validForms[];
 };
 
 #endif

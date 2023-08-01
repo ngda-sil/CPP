@@ -9,6 +9,15 @@ class Bureaucrat;
 
 class	Form
 {
+	private:
+
+		const std::string	_name;
+		bool				_signed;
+		const int			_gradeToSign;
+		const int			_gradeToExc;
+
+		Form();
+	
 	public:
 
 		Form(std::string name, int toSign, int toExc);
@@ -40,12 +49,6 @@ class	Form
 				const char* what() const throw();
 		};
 	
-	private:
-
-		const std::string	_name;
-		bool				_signed;
-		const int			_gradeToSign;
-		const int			_gradeToExc;
 };
 
 std::ostream& operator <<(std::ostream& o, Form const &f);
