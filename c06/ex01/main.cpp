@@ -3,26 +3,28 @@
 
 int	main()
 {
-	Data d("jean", 34);
+	Data d;
 	Serializer s;
-	uintptr_t uPtr;
-	Data* ptr;
+	uintptr_t uPtr = 0;
+	Data* ptr = 0;
 
-	std::cout << "Enter the name of the data :";
+	std::cout << "Enter the name of the data : ";
 	std::cin >> d.name;
-	std::cout << "\n Enter the size of the data :";
+	std::cout << "Enter the size of the data : ";
 	std::cin >> d.size;
 	
-	std::cout << "Name of the data : " << d.name << "Size of data : " << d.size << std::end;
-	ptr = &d;
-
-	uPtr = s.serialize(ptr);
-
-	std::cout << "uPtr : " << uPtr << " addr. data : " << d << std::endl;
-
+	std::cout << "Data d		: Data address : " << &d << " | Name of the data : " << (std::string) d.name << " | Size of data : " << (int)d.size << std::endl;
+	std::cout << "Data* ptr	: Data address : " << ptr << std::endl;
+	
+	uPtr = s.serialize(&d);
 	ptr = s.deserialize(uPtr);
 
-//	std::cout << "\n Name of the data : " << d->name << "Size of data : " << d->size << std::end;
+	if (&d == ptr)
+	{
+		std::cout << "Conversion successful. Pointers match." << std::endl;
+		std::cout << "Data d 		: Data address : " << &d << " | Name of the data : " << (std::string) d.name << " | Size of data : " << (int)d.size << std::endl;
+		std::cout << "Data *ptr 	: Data address : " << ptr << " | Name of the data : " << (std::string) ptr->name << " | Size of data : " << (int)ptr->size << std::endl;
+	}
 
 	return (0);
 }
