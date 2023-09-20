@@ -6,14 +6,17 @@ int main()
 	Base* tab[20];
 
 	for (int i = 0; i < 20; i++)
-		tab[i] = B->generate();
+		tab[i] = generate();
 	
 	for (int i = 0; i < 20; i++)
+	{
+		std::cout<< "------------------\n";
 		identify(tab[i]);
-	
-	A& a();
-	identify(a);
-	
+		identify(*tab[i]);
+		std::cout<< "------------------\n";
+
+	}
+
 	delete B;
 	for (int i = 0; i < 20; i++)
 		delete tab[i];

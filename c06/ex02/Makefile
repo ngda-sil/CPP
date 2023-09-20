@@ -3,9 +3,6 @@ CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -g3 -pedantic
 SRC			= 	main.cpp\
 				Base.cpp \
-				A.cpp \
-				B.cpp \
-				C.cpp \
 
 OBJ			= $(SRC:.cpp=.o)
 # ==============================================================================
