@@ -4,14 +4,14 @@
 # include <iostream>
 
 template <typename T>
-void myIter(Array* addr, int size, void * (f))
+void myIter(T*** addr, int size, void (*funct)(T))
 {
 	std::cout << "ITER\n";
 	
-	T tmp = *val1;
+	int i = 0;
 
-	*val1 = *val2;
-	*val2 = tmp;
+	for (int i = 0; i < size; i++)
+		funct(T[i]);
 }
 
 #endif
