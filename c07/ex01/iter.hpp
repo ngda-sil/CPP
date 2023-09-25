@@ -4,14 +4,24 @@
 # include <iostream>
 
 template <typename T>
-void myIter(T*** addr, int size, void (*funct)(T))
-{
-	std::cout << "ITER\n";
-	
-	int i = 0;
-
+void myIter(T* addr, int size, void (*funct)(T))
+{	
 	for (int i = 0; i < size; i++)
-		funct(T[i]);
+		funct(addr[i]);
 }
+
+template <typename T>
+void printElement(T x) 
+{
+    std::cout << x << " ";
+}
+
+template <typename T>
+void addOne(T x) 
+{
+	x++;
+	std::cout << x << " ";
+}
+
 
 #endif
