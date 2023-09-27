@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -20,10 +20,10 @@ int main()
 			ShrubberyCreation f("Garden");
 			ShrubberyCreation g("Forest");
 			Intern  randomIntern;
-    		Form*   rrf;
-			Form*	rrf2;
+    		AForm*   rrf;
+			AForm*	rrf2;
 		
-			//Form h("Not your regular form", 4, 23); //abstract class won't compile
+			//AForm h("Not your regular form", 4, 23); //abstract class won't compile
 			
 			if (i == 1)
 				Bureaucrat g(-12, "Chris");

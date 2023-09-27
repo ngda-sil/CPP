@@ -1,7 +1,7 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
-# include "Form.hpp"
+# include "AForm.hpp"
 # include <fstream>
 
 # define TREE \
@@ -18,8 +18,13 @@
 
 class Bureaucrate;
 
-class ShrubberyCreation : public Form
+class ShrubberyCreation : public AForm
 {
+	private:
+			const std::string	_target;
+	
+			ShrubberyCreation();
+
 	public:
 			ShrubberyCreation(const std::string target);
 			ShrubberyCreation(const ShrubberyCreation &rhs);
@@ -27,10 +32,11 @@ class ShrubberyCreation : public Form
 			~ShrubberyCreation(void);
 
 			void execute(Bureaucrat const & executor) const;
-			static Form*	clone(const std::string target);
-	
-	private:
-			const std::string	_target;
+			static AForm*	clone(const std::string target);
+			
+			/*In summary, making the clone function static is a common practice when using a factory pattern for object creation, 
+			as it allows you to create instances of a class without needing to instantiate the class first and is suitable for 
+			scenarios where you don't need access to instance-specific data or methods*/
 };
 
 #endif

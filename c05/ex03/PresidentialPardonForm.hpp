@@ -1,12 +1,17 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
 
-# include "Form.hpp"
+# include "AForm.hpp"
 
 class Bureaucrate;
 
-class PresidentialPardon : public Form
+class PresidentialPardon : public AForm
 {
+	private:
+			const std::string	_target;
+
+			PresidentialPardon();
+
 	public:
 			PresidentialPardon(const std::string target);
 			PresidentialPardon(const PresidentialPardon &rhs);
@@ -14,10 +19,7 @@ class PresidentialPardon : public Form
 			~PresidentialPardon(void);
 
 			void 	execute(Bureaucrat const & executor) const;
-			static Form*	clone(const std::string target);
-	
-	private:
-			const std::string	_target;
+			static AForm*	clone(const std::string target);
 };
 
 #endif

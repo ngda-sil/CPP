@@ -8,7 +8,7 @@
 	This ensures that you have a single copy of the array, and it is safely shared among all parts of your code 
 	that use the Intern class.*/
 
-const t_Forms Intern::_validForms[] = 
+const t_AForms Intern::_validForms[] = 
 { 	
 	{"presidential pardon", &PresidentialPardon::clone},
 	{"shrubbery creation", &ShrubberyCreation::clone},
@@ -36,7 +36,7 @@ Intern::~Intern(void)
 
 // Fonction membre
 
-Form*	Intern::makeForm(const std::string formName, const std::string target)
+AForm*	Intern::makeForm(const std::string formName, const std::string target)
 {
 	for (int i = 0; i < 3; i++)
 		if (formName == _validForms[i].name)
@@ -45,6 +45,6 @@ Form*	Intern::makeForm(const std::string formName, const std::string target)
 			return (_validForms[i].ptrToFunc(target));
 		}
 	std::cout << RED << "Intern can't create " << formName << " because " << RESET;
-	throw Form::FormDoesNotExistException();
+	throw AForm::FormDoesNotExistException();
 }
 

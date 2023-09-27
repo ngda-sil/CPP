@@ -1,11 +1,11 @@
 #include "RobotomyRequestForm.hpp"
 
 //Canonical
-RobotomyRequest::RobotomyRequest(const std::string target) : Form("Robotomy Request", 72, 45), _target(target)
+RobotomyRequest::RobotomyRequest(const std::string target) : AForm("Robotomy Request", 72, 45), _target(target)
 {
 }
 
-RobotomyRequest::RobotomyRequest(const RobotomyRequest &rhs) : Form(rhs), _target(rhs._target)
+RobotomyRequest::RobotomyRequest(const RobotomyRequest &rhs) : AForm(rhs), _target(rhs._target)
 {
 }
 
@@ -38,7 +38,7 @@ void	RobotomyRequest::execute(Bureaucrat const & executor) const
 	}
 }
 
-Form* RobotomyRequest::clone(std::string target)
+AForm* RobotomyRequest::clone(std::string target)
 {
 	return (new RobotomyRequest(target));
 }

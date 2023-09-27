@@ -1,11 +1,11 @@
 #include "ShrubberyCreationForm.hpp"
 
 //Canonical
-ShrubberyCreation::ShrubberyCreation(const std::string target) : Form("Shrubbery Creation", 145, 137), _target(target)
+ShrubberyCreation::ShrubberyCreation(const std::string target) : AForm("Shrubbery Creation", 145, 137), _target(target)
 {
 }
 
-ShrubberyCreation::ShrubberyCreation(const ShrubberyCreation &rhs) : Form(rhs), _target(rhs._target)
+ShrubberyCreation::ShrubberyCreation(const ShrubberyCreation &rhs) : AForm(rhs), _target(rhs._target)
 {
 }
 
@@ -35,7 +35,7 @@ void	ShrubberyCreation::execute(Bureaucrat const & executor) const
 	file.close(); 
 }
 
-Form* ShrubberyCreation::clone(std::string target)
+AForm* ShrubberyCreation::clone(std::string target)
 {
 	return (new ShrubberyCreation(target));
 }

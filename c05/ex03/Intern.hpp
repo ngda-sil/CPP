@@ -7,19 +7,22 @@
 # include "RobotomyRequestForm.hpp"
 # include "ShrubberyCreationForm.hpp"
 
-class Form;
+class AForm;
 class PresidentialPardon;
 class RobotomyRequest;
 class ShrubberyCreation;
 
-typedef struct	s_Forms
+typedef struct	s_AForms
 {
 	std::string	name;
-	Form* (*ptrToFunc) (const std::string target);
-}				t_Forms;
+	AForm* (*ptrToFunc) (const std::string target);
+}				t_AForms;
 
 class	Intern
 {
+	private:
+		static const t_AForms _validForms[];
+
 	public:
 
 		Intern(void);
@@ -27,10 +30,7 @@ class	Intern
 		Intern& operator=(const Intern &rhs);
 		~Intern(void);
 
-		Form*	makeForm(const std::string formName, const std::string target);
-
-	private:
-		static const t_Forms _validForms[];
+		AForm*	makeForm(const std::string formName, const std::string target);
 };
 
 #endif

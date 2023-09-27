@@ -64,7 +64,7 @@ void	Bureaucrat::moveDownTheLadder(void)
 
 // Sign
 
-void	Bureaucrat::signForm(Form &f) 
+void	Bureaucrat::signForm(AForm &f) 
 {
 	try
 	{
@@ -80,7 +80,7 @@ void	Bureaucrat::signForm(Form &f)
 
 // Execute
 
-void	Bureaucrat::executeForm(Form const &f)
+void	Bureaucrat::executeForm(AForm const &f)
 {
 	try
 	{

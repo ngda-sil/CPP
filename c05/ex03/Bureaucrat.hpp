@@ -3,7 +3,7 @@
 
 # include <iostream>
 # include <exception>
-# include "Form.hpp"
+# include "AForm.hpp"
 
 # define RESET		"\033[0m"
 # define RED		"\033[31m"
@@ -11,7 +11,7 @@
 # define YELLOW		"\033[33m"
 # define CYAN		"\033[36m"
 
-class Form; 
+class AForm; 
 
 class Bureaucrat
 {
@@ -28,8 +28,8 @@ class Bureaucrat
 			void		moveUpTheLadder(void);
 			void		moveDownTheLadder(void);
 
-			void		signForm(Form &f);
-			void		executeForm(Form const &f);
+			void		signForm(AForm &f);
+			void		executeForm(AForm const &f);
 			
 			class		GradeTooHighException : public std::exception
 			{

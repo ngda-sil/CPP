@@ -1,13 +1,18 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-# include "Form.hpp"
+# include "AForm.hpp"
 # include <cstdlib>
 
 class Bureaucrate;
 
-class RobotomyRequest : public Form
-{
+class RobotomyRequest : public AForm
+{	
+	private:
+			const std::string	_target;
+
+			RobotomyRequest();
+			
 	public:
 			RobotomyRequest(const std::string target);
 			RobotomyRequest(const RobotomyRequest &rhs);
@@ -15,10 +20,7 @@ class RobotomyRequest : public Form
 			~RobotomyRequest(void);
 
 			void execute(Bureaucrat const & executor) const;
-			static Form*	clone(const std::string target);
-	
-	private:
-			const std::string	_target;
+			static AForm*	clone(const std::string target);
 };
 
 #endif
