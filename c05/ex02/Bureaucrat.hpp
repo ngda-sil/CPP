@@ -15,6 +15,12 @@ class AForm;
 
 class Bureaucrat
 {
+	private:
+			int					_grade;
+			const std::string	_name;
+
+			Bureaucrat();
+			
 	public:
 			Bureaucrat(int grade, std::string name);
 			Bureaucrat(const Bureaucrat &rhs);
@@ -42,9 +48,6 @@ class Bureaucrat
 					const char* what() const throw();
 			};
 
-	private:
-			int					_grade;
-			const std::string	_name;
 };
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat const &b);
