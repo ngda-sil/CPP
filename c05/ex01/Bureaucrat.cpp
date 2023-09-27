@@ -22,9 +22,7 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat &rhs)
 	return(*this);
 }
 
-Bureaucrat::~Bureaucrat(void)
-{
-}
+Bureaucrat::~Bureaucrat(void) {}
 
 // Set & Get
 
@@ -94,6 +92,6 @@ const char 	*Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat const &b)
 {
-	o << b.getName() << ", bureaucrat grade : "<< b.getGrade() << ".";
+	o << b.getName() << ", bureaucrat grade : "<< b.getGrade();
 	return (o);
 }

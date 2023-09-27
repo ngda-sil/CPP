@@ -15,7 +15,7 @@ int main()
 			if (i == 1)
 				Bureaucrat d(-12, "Chris");
 			if (i == 2)
-				b.moveDownTheLadder();
+				a.moveDownTheLadder();
 			if (i == 3)
 				Form d("Secret Form", 0, 12);
 			if (i == 4)
