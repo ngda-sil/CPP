@@ -1,5 +1,5 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <iostream>
 # include <exception>
@@ -7,14 +7,23 @@
 
 class Bureaucrat;
 
-class	Form
+class	AForm
 {
+	protected:
+
+		const std::string	_name;
+		bool				_signed;
+		const int			_gradeToSign;
+		const int			_gradeToExc;
+
+		AForm();
+		
 	public:
 
-		Form(std::string name, int toSign, int toExc);
-		Form(const Form &rhs);
-		Form& operator=(const Form &rhs);
-		~Form(void);
+		AForm(std::string name, int toSign, int toExc);
+		AForm(const AForm &rhs);
+		AForm& operator=(const AForm &rhs);
+		~AForm(void);
 
 	 	std::string	getName(void) const;
 		int			getToSign(void) const;
@@ -37,25 +46,19 @@ class	Form
 			public:
 				const char* what() const throw();
 		};
-		class		FormAlreadySignedException : public std::exception
+		class		AFormAlreadySignedException : public std::exception
 		{
 			public:
 				const char* what() const throw();
 		};
-		class		FormNotSignedException : public std::exception
+		class		AFormNotSignedException : public std::exception
 		{
 			public:
 				const char * what() const throw();
 		};
 
-	protected:
-
-		const std::string	_name;
-		bool				_signed;
-		const int			_gradeToSign;
-		const int			_gradeToExc;
 };
 
-std::ostream& operator <<(std::ostream& o, Form const &f);
+std::ostream& operator <<(std::ostream& o, AForm const &f);
 
 #endif

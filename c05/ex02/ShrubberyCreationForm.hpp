@@ -1,7 +1,7 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
-# include "Form.hpp"
+# include "AForm.hpp"
 # include <fstream>
 
 # define TREE \
@@ -18,8 +18,13 @@
 
 class Bureaucrate;
 
-class ShrubberyCreation : public Form
+class ShrubberyCreation : public AForm
 {
+	private:
+			const std::string	_target;
+
+			ShrubberyCreation();
+			
 	public:
 			ShrubberyCreation(const std::string target);
 			ShrubberyCreation(const ShrubberyCreation &rhs);
@@ -27,9 +32,6 @@ class ShrubberyCreation : public Form
 			~ShrubberyCreation(void);
 
 			 void execute(Bureaucrat const & executor) const;
-	
-	private:
-			const std::string	_target;
 };
 
 #endif
