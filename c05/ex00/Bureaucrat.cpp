@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 
 // Canonical
+Bureaucrat::Bureaucrat() {}
 
 Bureaucrat::Bureaucrat(int grade, const std::string name) : _name(name)
 {

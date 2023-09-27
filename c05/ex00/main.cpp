@@ -2,7 +2,11 @@
 
 int main(int ac, char** av)
 {
-	(void) ac;
+	if (ac == 1)
+	{
+		std::cout << "Faut mettre des arguments pelo !\n";
+		return (1);
+	}
 	std::string test = av[1];
 	
 	if (test == "BASIC")
