@@ -20,16 +20,21 @@ class	ScalarConverter
 
 			enum dataType
 			{
-				NONE	= 0,
-				INF 	= 1,
-				IS_NAN	= 2,			
-				CHAR 	= 3,
-				INT 	= 4,
-				FLOAT 	= 5,
-				DOUBLE 	= 6
+				CHAR 	= 0,
+				INT 	= 1,
+				FLOAT 	= 2,
+				DOUBLE 	= 3,
+				NONE	= 4		
 			};
 			
+
+			int type;
+
 			static int detectType(std::string literal);
+			static void	convertToTrueType(std::string literal);
+			static void	explicitConversion();
+			static void	printConversion();
+
 
 	public:
 			

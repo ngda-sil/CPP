@@ -1,50 +1,24 @@
 #include "ScalarConverter.hpp"
-
-/*void Converter::detectType()
-{
-	if	(convertibleToChar())
-		_type = "CHAR";
-	else if (convertibleToNb("INT"))
-		_type = "INT";
-	else if (convertibleToFloat())
-	{
-		if ((_l = isLimit()) && _l == FLOAT)
-			_type = "LFLOAT";
-		else if (_l != DOUBLE)
-			_type = "FLOAT";
-	}
-	else if (convertibleToNb("DOUBLE"))
-	{
-		if ((_l = isLimit()) && _l == DOUBLE)
-			_type = "LDOUBLE";
-		else if (_l != FLOAT)
-			_type = "DOUBLE";
-	}
-	return (0);
-}*/
-//int ScalarConverter::type = ScalarConverter::NONE;
-
 int ScalarConverter::detectType(std::string literal)
 {
-	double 	d;
 	char*	pEnd;
+	double 	d = strtod(literal.c_str(), &pEnd);;
 
 	// char
-	if (literal.length() == 1 
-			&& isprint(literal[0]) 
-			&& !isdigit(literal[0]))
+	if (literal.length() == 1 && isprint(literal[0]) && !isdigit(literal[0]))
 		return (CHAR);
 
 	// int
-	d = strtod(literal.c_str(), &pEnd);
-
 	if (*pEnd == '\0' && literal.find(".") == std::string::npos)
 		if (d >= std::numeric_limits<int>::min() && d <= std::numeric_limits<int>::max())
 			return (INT);
 	
 	// float
-	if (literal.find_last_of("f") == literal.length() - 1 && !std::numeric_limits<double>::has_infinity)
+	if (literal.find_last_of("f") == literal.length() - 1)
 	{
+		if (!std::numeric_limits<double>::has_infinity)
+			return (DOUBLE);
+
 		literal.erase(literal.length() - 1);
 			
 		double 	d2;
@@ -62,12 +36,14 @@ int ScalarConverter::detectType(std::string literal)
 	return (NONE);
 }
 
+
 void ScalarConverter::convert(std::string literal)
 {
 	int	type;
 
 	type = detectType(literal);
-	std::cout << type << '\n';
+
+	std::cout << type << std::endl;
 	/*convertToTrueType();
 	explicitConversion();
 	printConvertion();*/
