@@ -8,6 +8,8 @@
 # include <sstream>
 # include <iostream>
 # include <cerrno>
+# include <iomanip>
+# include <cctype>
 
 
 class	ScalarConverter
@@ -30,11 +32,11 @@ class	ScalarConverter
 
 			int type;
 
-			static int detectType(std::string literal);
-			static void	convertToTrueType(std::string literal);
-			static void	explicitConversion();
-			static void	printConversion();
-
+			static int 	detectType(std::string literal);
+			static void charConv(char c);
+			static void intConv(int i);
+			static void floatConv(float f);
+			static void doubleConv(double d);
 
 	public:
 			
