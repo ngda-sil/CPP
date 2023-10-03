@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+
 int ScalarConverter::detectType(std::string literal)
 {
 	char*	pEnd;
@@ -35,72 +36,90 @@ int ScalarConverter::detectType(std::string literal)
 	return (NONE);
 }
 
-void ScalarConverter::charConv(char c)
-{
-	std::cout 	<< "char: '" << c << "'\n"
-				<< "int: " << static_cast<int>(c) << "\n"
-				<< "float: " << std::setprecision(1) << std::fixed << static_cast<float>(c) << "f\n"
-				<< "double: " << static_cast<double>(c) << std::endl;
-}
-
 template <typename T>
 void ScalarConverter::printChar(T c)
 {
 	std::cout 	<< "char: '";
 	
-	if ( c > 0 && c < 255)
+	if ( c > 0 && c < 255 && floor(c) == c)
+	{
 		if (!isprint(c)) 
 			std::cout << "Non displayable'\n";
 		else 
-			std::cout << static_cast<T>(c) << "'\n";
+			std::cout << static_cast<char>(c) << "'\n";
+	}
+	else
+		std::cout << "impossible'\n";
+}
+
+template <typename T>
+void ScalarConverter::printInt(T i)
+{
+	std::cout 	<< "int: ";
+	
+		if (i >= std::numeric_limits<int>::min() && i <= std::numeric_limits<int>::max())
+			std::cout << static_cast<int>(i) << "\n";
 		else
-			std::cout << "impossible'\n";
+			std::cout << "impossible\n";
+}
+
+template <typename T>
+void ScalarConverter::printFloat(T f)
+{
+	std::cout	<< "float: ";
+		if (f >= std::numeric_limits<float>::lowest() && f <= std::numeric_limits<float>::max())
+			std::cout << std::fixed << std::setprecision(1) << static_cast<float>(f) << "\n";
+		else
+			std::cout << "impossible\n";
+}
+
+template <typename T>
+void ScalarConverter::printDouble(T d)
+{
+	std::cout	<< "double: ";
+		if (d >= std::numeric_limits<double>::lowest() && d <= std::numeric_limits<double>::max())
+			std::cout << d << "\n";
+		else
+			std::cout << "impossible\n";
+}
+
+
+void ScalarConverter::charConv(char c)
+{
+	std::cout 	<< "char: '" << c << "'\n";
+	printInt<char>(c);
+	printFloat<char>(c);
+	printDouble<char>(c);
 }
 
 void ScalarConverter::intConv(int i)
 {
 	printChar<int>(i);
-
-	std::cout	<< "int: " << i << "\n"
-				<< "float: " << std::setprecision(1) << std::fixed << static_cast<float>(i) << "f\n"
-				<< "double: " << static_cast<double>(i) << std::endl;
+	std::cout	<< "int: " << i << "\n";
+	printFloat<int>(i);
+	printDouble<int>(i);
 }
 
 void ScalarConverter::floatConv(float f)
 {
 	printChar<float>(f);
-
-	std::cout	<< "int: ";
-			if (f >= std::numeric_limits<int>::min() && f <= std::numeric_limits<int>::max())
-				std::cout << static_cast<int>(f) << "\n";
-			else
-				std::cout << "impossible\n";
-	
-	std::cout	<< "float: " << std::fixed << std::setprecision(1) << f << "f\n" // ??
-				<< "double: " << static_cast<double>(f) << std::endl;
+	printInt<float>(f);
+	std::cout	<< "float: " << std::fixed << std::setprecision(1) << f << "f\n";
+	printDouble<float>(f);																									
 }
 
 void ScalarConverter::doubleConv(double d)
 {
 	printChar<double>(d);
-
-	std::cout	<< "int: ";
-			if (d >= std::numeric_limits<int>::min() && d <= std::numeric_limits<int>::max())
-				std::cout << static_cast<int>(d) << "\n";
-			else
-				std::cout << "impossible\n";
-	
-	std::cout	<< "float: ";
-			if (d >= std::numeric_limits<float>::lowest() && d <= std::numeric_limits<float>::max())
-				std::cout << std::fixed << std::setprecision(1) << static_cast<float>(d) << "\n";
-			else
-				std::cout << "impossible\n";
-
+	printInt<double>(d);
+	printFloat<double>(d);																						//The reason for the difference in the numbers is that float uses fewer bits to represent the value, which means it has a limited range and precision. When you perform the conversion, the compiler truncates the extra bits of the double value to fit it into the float representation.
 	std::cout	<< "double: ";
 			if (d >= std::numeric_limits<double>::lowest() && d <= std::numeric_limits<double>::max())
 				std::cout << d << "\n";
 			else
 				std::cout << "impossible\n";
+	
+
 }
 
 void ScalarConverter::convert(std::string literal)
@@ -141,7 +160,7 @@ void ScalarConverter::convert(std::string literal)
 					break;
 	
 		case DOUBLE : 
-					double d;
+					double d;																							
 					iss >> d;
 					doubleConv(d);
     }

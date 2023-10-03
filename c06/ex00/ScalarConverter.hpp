@@ -10,6 +10,7 @@
 # include <cerrno>
 # include <iomanip>
 # include <cctype>
+# include <cmath>
 
 
 class	ScalarConverter
@@ -34,16 +35,16 @@ class	ScalarConverter
 
 			static int 	detectType(std::string literal);
 
+			template <typename T> static void printChar(T c);
+			template <typename T> static void printInt(T i);
+			template <typename T> static void printFloat(T f);
+			template <typename T> static void printDouble(T d);
+
 			static void charConv(char c);
 			static void intConv(int i);
 			static void floatConv(float f);
 			static void doubleConv(double d);
 
-			template <typename T>
-			static void	printChar(T c);
-			static void printInt(int i);
-			static void printFloat(float f);
-			static void printDouble(double d);
 	public:
 			
 			static void convert(std::string literal);
