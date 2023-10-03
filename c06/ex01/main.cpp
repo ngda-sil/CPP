@@ -1,5 +1,6 @@
 #include "Data.hpp"
 #include "Serializer.hpp"
+#include <string>
 
 int	main()
 {
@@ -26,5 +27,8 @@ int	main()
 		std::cout << "Data *ptr 	: Data address : " << ptr << " | Name of the data : " << (std::string) ptr->name << " | Size of data : " << (int)ptr->size << std::endl;
 	}
 
+	std::string doubles = "12.043";
+	double ddd = std::stod(doubles);
+	std::cout << ddd;
 	return (0);
 }

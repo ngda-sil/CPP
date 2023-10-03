@@ -1,8 +1,8 @@
-NAME		= Converter
+NAME		= ScalarConvertion
 CXX			= c++
-CXXFLAGS	=  -Wall -Wextra -Werror -std=c++98 -g3 -pedantic
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -g3 -pedantic
 SRC			= 	main.cpp\
-				ScalarConverter.cpp
+				ScalarConverter.cpp\
 
 OBJ			= $(SRC:.cpp=.o)
 # ==============================================================================

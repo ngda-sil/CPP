@@ -1,6 +1,6 @@
 NAME		= Serializer
-CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -g3 -pedantic
+CXX			= g++-12
+CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror -g3 -pedantic
 SRC			= 	Serializer.cpp\
 				main.cpp \
 				Data.cpp \

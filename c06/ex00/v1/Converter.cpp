@@ -1,9 +1,9 @@
-#include "converter.hpp"
+#include "Converter.hpp"
 
 // Canonical
 std::string Converter::_limits[] = {"inf", "+inf", "-inf", "nan", "+inff", "-inff", "nanf"};
 
-Converter::Converter(void) : _type("undefined"), _c('0'), _i(0), _f(0), _d(0)
+Converter::Converter(void) : _type("Undefined"), _c('0'), _i(0), _f(0), _d(0)
 {
 }
 
@@ -81,11 +81,14 @@ void Converter::setType(std::string type)
 {
 	_type = type;
 }
-int Converter::setToConvert(char* str)
+
+int Converter::setToConvert(std::string str)
 {
-	if (str)
+	if (str.length())
 	{
-		_toConvert = std::string(str);
+		for (size_t i = 0; i < str.length(); i++)
+			str[i] = tolower(str[i]);
+		_toConvert = str;
 		return (0);
 	}
 	else 
@@ -96,18 +99,19 @@ int Converter::setToConvert(char* str)
 }
 // Public Member Functions
 
-void Converter::convert(char* toConvert)
+void Converter::convert(std::string toConvert)
 {
 	if (setToConvert(toConvert))
 		return;
 	detectType();
 	convertToTrueType();
-	if (!_l)	
-		explicitConversion();
+	explicitConversion();
 }
 
 void Converter::printConversion() const
 {
+	if (_type == "Undefined")
+		return;
 	printChar();
 	printInt();
 	printFloat();
@@ -141,12 +145,12 @@ bool Converter::convertibleToFloat() const
 	}
 	catch(const std::out_of_range& e)
 	{
-		std::cerr << RED << e.what() << RESET << std::endl;
+		//std::cerr << RED << e.what() << RESET << std::endl;
 		return (false);
 	}
 	catch(const std::invalid_argument e)
 	{
-		std::cerr << RED << e.what() << RESET << std::endl;
+		//std::cerr << RED << e.what() << RESET << std::endl;
 		return (false);
 	}
 }
@@ -155,15 +159,13 @@ bool Converter::convertibleToNb(const std::string type) const
 {
 	try
 	{
-		size_t pos;
+		size_t pos = 0;
 
 		if (type == "INT")
 			std::stoi(_toConvert, &pos);
 		else  if (type == "DOUBLE")
 			std::stod(_toConvert, &pos);
-		else
-			return (false);
-	
+
 		if (pos == _toConvert.length())
 			return(true);
 		else
@@ -171,12 +173,12 @@ bool Converter::convertibleToNb(const std::string type) const
 	}
 	catch(const std::out_of_range& e)
 	{
-		std::cerr << RED << e.what() << RESET << std::endl;
+		//std::cerr << RED << e.what() << RESET << std::endl;
 		return (false);
 	}
 	catch(const std::invalid_argument e)
 	{
-		std::cerr << RED << e.what() << RESET << std::endl;
+		//std::cerr << RED << e.what() << RESET << std::endl;
 		return (false);
 	}
 }
@@ -205,15 +207,15 @@ int Converter::detectType()
 	else if (convertibleToFloat())
 	{
 		if ((_l = isLimit()) && _l == FLOAT)
-			_type = FLOAT;
-		else
+			_type = "LFLOAT";
+		else if (_l != DOUBLE)
 			_type = "FLOAT";
 	}
 	else if (convertibleToNb("DOUBLE"))
 	{
 		if ((_l = isLimit()) && _l == DOUBLE)
-			_type = FLOAT;
-		else
+			_type = "LDOUBLE";
+		else if (_l != FLOAT)
 			_type = "DOUBLE";
 	}
 	return (0);
@@ -257,6 +259,13 @@ void Converter::explicitConversion()
 		_c = static_cast<char>(_d);
 		_i = static_cast<int>(_d); 
 		_f = static_cast<float>(_d);
+		break;
+
+	case 'L':
+		break;
+	
+	case 'U':
+		std::cout << RED << "Conversion not possible : Undefinable type\n" << RESET;
 		break;
 	}	
 }
@@ -308,9 +317,9 @@ void	Converter::printDouble() const
 	std::cout << "double: ";
 	
 	if (_l == FLOAT)
-		std::cout << _toConvert;
+		std::cout <<  _toConvert.substr(0, _toConvert.length()-1);
 	else if (_l == DOUBLE)
-		std::cout << _toConvert.substr(0, _toConvert.end());
+		std::cout << _toConvert;
 	else
 		std::cout<< std::setprecision(1) << std::fixed << _d;
 	
@@ -330,3 +339,4 @@ std::ostream& operator<<(std::ostream& o, Converter const &c)
 
 	return (o);
 }
+

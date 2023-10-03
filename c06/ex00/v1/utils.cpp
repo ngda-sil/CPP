@@ -1,4 +1,4 @@
-#include "converter.hpp"
+#include "Converter.hpp"
 
 int	checkArgs(int ac)
 {
