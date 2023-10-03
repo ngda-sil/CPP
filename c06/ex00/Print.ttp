@@ -1,0 +1,22 @@
+#include "ScalarConverter.hpp"
+
+t
+
+template <typename T>
+Array<T>::~Array()
+{
+}
+
+template<typename T>
+T& Array<T>::operator[](unsigned int index)
+{
+	if (index < 0 || index >= _n)
+		throw std::out_of_range("Index out of bounds");
+	return(_myArray[index]);
+}
+
+template <typename T>
+void ScalarConversion::printChar(T type)
+{
+
+}

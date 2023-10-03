@@ -33,11 +33,17 @@ class	ScalarConverter
 			int type;
 
 			static int 	detectType(std::string literal);
+
 			static void charConv(char c);
 			static void intConv(int i);
 			static void floatConv(float f);
 			static void doubleConv(double d);
 
+			template <typename T>
+			static void	printChar(T c);
+			static void printInt(int i);
+			static void printFloat(float f);
+			static void printDouble(double d);
 	public:
 			
 			static void convert(std::string literal);

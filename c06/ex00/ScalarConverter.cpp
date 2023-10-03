@@ -16,7 +16,7 @@ int ScalarConverter::detectType(std::string literal)
 	// float
 	if (literal.find_last_of("f") == literal.length() - 1)
 	{
-		if (!std::numeric_limits<double>::has_infinity)
+		if (!std::numeric_limits<double>::has_infinity) // inf case
 			return (DOUBLE);
 
 		literal.erase(literal.length() - 1);
@@ -43,16 +43,24 @@ void ScalarConverter::charConv(char c)
 				<< "double: " << static_cast<double>(c) << std::endl;
 }
 
-void ScalarConverter::intConv(int i)
+template <typename T>
+void ScalarConverter::printChar(T c)
 {
 	std::cout 	<< "char: '";
-		if ( i > 0 && i < 255)
-			if (!isprint(i)) 
-				std::cout << "Non displayable'\n";
-			else 
-				std::cout << static_cast<char>(i) << "'\n";
+	
+	if ( c > 0 && c < 255)
+		if (!isprint(c)) 
+			std::cout << "Non displayable'\n";
+		else 
+			std::cout << static_cast<T>(c) << "'\n";
 		else
 			std::cout << "impossible'\n";
+}
+
+void ScalarConverter::intConv(int i)
+{
+	printChar<int>(i);
+
 	std::cout	<< "int: " << i << "\n"
 				<< "float: " << std::setprecision(1) << std::fixed << static_cast<float>(i) << "f\n"
 				<< "double: " << static_cast<double>(i) << std::endl;
@@ -60,14 +68,7 @@ void ScalarConverter::intConv(int i)
 
 void ScalarConverter::floatConv(float f)
 {
-	std::cout 	<< "char: '";
-		if ( f > 0 && f < 255)
-			if (!isprint(f)) 
-				std::cout << "Non displayable'\n";
-			else 
-				std::cout << static_cast<char>(f) << "'\n";
-		else
-			std::cout << "impossible'\n";
+	printChar<float>(f);
 
 	std::cout	<< "int: ";
 			if (f >= std::numeric_limits<int>::min() && f <= std::numeric_limits<int>::max())
@@ -81,14 +82,7 @@ void ScalarConverter::floatConv(float f)
 
 void ScalarConverter::doubleConv(double d)
 {
-	std::cout 	<< "char: '";
-		if ( d > 0 && d < 255)
-			if (!isprint(d)) 
-				std::cout << "Non displayable'\n";
-			else 
-				std::cout << static_cast<char>(d) << "'\n";
-		else
-			std::cout << "impossible'\n";
+	printChar<double>(d);
 
 	std::cout	<< "int: ";
 			if (d >= std::numeric_limits<int>::min() && d <= std::numeric_limits<int>::max())
