@@ -1,5 +1,5 @@
 NAME		= Serializer
-CXX			= g++-12
+CXX			= c++
 CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror -g3 -pedantic
 SRC			= 	Serializer.cpp\
 				main.cpp \

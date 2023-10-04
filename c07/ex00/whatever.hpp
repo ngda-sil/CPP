@@ -4,14 +4,14 @@
 # include <iostream>
 
 template <typename T>
-void mySwap(T* val1, T* val2)
+void mySwap(T& val1, T& val2)
 {
 	std::cout << "SWAP\n";
 	
-	T tmp = *val1;
+	T tmp = val1;
 
-	*val1 = *val2;
-	*val2 = tmp;
+	val1 = val2;
+	val2 = tmp;
 }
 
 template <typename T>

@@ -1,4 +1,4 @@
-NAME		= SwapMinMax
+NAME		= Iter
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -g3 -pedantic
 SRC			= 	main.cpp\

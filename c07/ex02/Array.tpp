@@ -1,50 +1,49 @@
 template <typename T>
-Array<T>::Array() : _myArray(NULL), _n(0) {}
+Array<T>::Array() : _array(NULL), _size(0) {}
 
 template <typename T>
-Array<T>::Array(unsigned int n) : _myArray(new T[n]), _n(n) {}
+Array<T>::Array(unsigned n) : _array(new T[n]()), _size(n) {}
 
 template <typename T>
-Array<T>::Array(const Array& rhs)
+Array<T>::Array(Array const & rhs)
 {
 	if (this != &rhs)
 	{
-		_n = rhs._n;
-		_myArray = new T[_n];
-		for(unsigned int i = 0; i < _n; i++)
-			_myArray[i] = rhs._myArray[i];
+		_size = rhs._size;
+		_array = new T[_size];
+		for (unsigned int i = 0; i < _size; i++)
+			_array[i] = rhs._array[i];
 	}
 }
 
 template <typename T>
-Array<T>& Array<T>::operator=(const Array& rhs)
+Array<T>& Array<T>::operator=(Array const & rhs)
 {
-	if (this == &rhs)
-		return (*this);
-	if (_myArray)
-		delete[] _myArray;
-	_n = rhs._n;
-	_myArray = new T[_n];
-	for (unsigned int i = 0; i < _n; i++)
-		_myArray[i] = rhs._myArray[i];
-	return(*this);
+	if (*this != &rhs)
+	{
+		_size = rhs._size;
+		if (_array)
+			delete[] _array;
+		_array = new T[_size];
+		for (unsigned int i = 0; i < _size; i++)
+			_array[i] = rhs._array[i];
+	}
+	return (*this);
 }
 
 template <typename T>
-Array<T>::~Array()
-{
-}
+Array<T>::~Array() {}
 
-template<typename T>
+template <typename T>
 T& Array<T>::operator[](unsigned int index)
 {
-	if (index < 0 || index >= _n)
-		throw std::out_of_range("Index out of bounds");
-	return(_myArray[index]);
+	if (index >= _size || index < 0)
+		throw std::out_of_range("Out of bound \n");
+	return (_array[index]);
 }
 
 template <typename T>
 unsigned int Array<T>::size()
 {
-	return (_n);
+	return (_size);
 }

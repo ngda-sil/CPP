@@ -1,130 +1,92 @@
-#include <iostream>
 #include "Array.hpp"
-#include <cstdlib>
+#include <iostream>
 
-/*#define MAX_VAL 750
-int main(int, char**)
+int	main()
 {
-    Array<int> numbers(MAX_VAL);
-    int* mirror = new int[MAX_VAL];
-    srand(time(NULL));
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        const int value = rand();
-        numbers[i] = value;
-        mirror[i] = value;
-    }
-    //SCOPE
-    {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
-    }
+	Array<int>			emptyIntArr;
+	Array<char> 		emptyCharArr;
+	Array<std::string>	emptyStringArr;
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        if (mirror[i] != numbers[i])
-        {
-            std::cerr << "didn't save the same value!!" << std::endl;
-            return 1;
-        }
-    }
-    try
-    {
-        numbers[-2] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    try
-    {
-        numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+	std::cout << "Construction with no parameter:\n\n";
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        numbers[i] = rand();
-    }
-    delete [] mirror;//
-    return 0;
-}*/
+	std::cout << "SIZE OF : emptyIntArr 		: " << emptyIntArr.size() << "\n"; 
+	std::cout << "SIZE OF : emptyCharArr 		: " << emptyCharArr.size() << "\n"; 
+	std::cout << "SIZE OF : emptyStringArr	: " << emptyStringArr.size() << "\n\n";  
+	
+	std::cout << "Trying to access value [2] of empty arrays:\n\n";
 
-#define MAX_VAL 25
-
-int main(int, char**) {
-	// Construction with no parameter: Creates an empty array.
-	Array<int> emptyArray;
-	std::cout << "Size of emptyArray: " << emptyArray.size() << std::endl; // Should output 0
-
-	// Construction with an unsigned int n as a parameter: Creates an array of n elements initialized by default.
-	Array<int> numbers(MAX_VAL);
-	for (unsigned int i = 0; i < MAX_VAL; i++) {
-		std::cout << numbers[i] << " "; // Output the numbers array
+	try
+	{
+		Array<int>			emptyIntArr;
+		std::cout << "emptyIntArr[-2]		:	" << emptyIntArr[-2] << "\n";
 	}
-	std::cout << std::endl;
-
-	// Construction by copy and assignment operator
-	Array<int> copiedArray = numbers; // Copy constructor
-	Array<int> assignedArray;
-	assignedArray = numbers; // Assignment operator
-
-	// Modifying either the original array or its copy after copying must not affect the other array.
-	copiedArray[0] = 999;
-	std::cout << "Original Array after modifying copy: " << numbers[0] << std::endl; // Should be unchanged
-	std::cout << "Copied Array: " << copiedArray[0] << std::endl; // Should be 999
-
-	// Out-of-bounds access: Should throw std::exception (std::out_of_range)
-	try {
-		numbers[-2] = 0;
-	} catch(const std::exception& e) {
-		std::cerr << e.what() << '\n'; // Output: "Array::Index out of bounds!"
+	catch (std::exception& e) {std::cerr << e.what();}
+	try
+	{
+		Array<char>			emptyCharArr;
+		std::cout << "emptyCharArr[2]		:	" << emptyCharArr[2] << "\n";
 	}
-	try {
-		numbers[MAX_VAL] = 0;
-	} catch(const std::exception& e) {
-		std::cerr << e.what() << '\n'; // Output: "Array::Index out of bounds!"
+	catch (std::exception& e) {std::cerr << e.what();}
+	try
+	{
+		Array<std::string>			emptystringArr;
+		std::cout << "emptyStringArr[2]	:	" << emptyStringArr[2] << "\n";
 	}
+	catch (std::exception& e) {std::cerr << e.what();}
 
-	// Additional functionality test: Randomly fill and output the array
-	for (unsigned int i = 0; i < MAX_VAL; i++) {
-		numbers[i] = rand();
-	}
+	std::cout << "\nConstruction with parameter: n = 5 : element initialized by default\n\n";
 
-	std::cout << "Numbers Array: ";
-	for (unsigned int i = 0; i < MAX_VAL; i++) {
-		std::cout << numbers[i] << " ";
-	}
-	std::cout << std::endl;
+	Array<int>			IntArr(5);
 
-	// Complex type: String Array
-	Array<std::string> stringArray(3);
+	for (unsigned int i = 0; i < 5; i++)
+		std::cout << "IntArr[" << i << "]	: " << IntArr[i] << " |	";  // initialized by default : ()
+	
+	std::cout << "\n\nConstruction by copy & assignment operator :\n\n";
 
-	// Initialize elements
-	stringArray[0] = "Hello";
-	stringArray[1] = "Complex";
-	stringArray[2] = "Types";
+	Array<char>			charArr(3);
+	
+	for (unsigned int i = 0; i < 3; i++)
+		std::cout << "CharArr[" << i << "]	: " << charArr[i] << " |	";
 
-	// Print elements
-	for (unsigned int i = 0; i < stringArray.size(); i++) {
-		std::cout << stringArray[i] << " ";
-	}
-	std::cout << std::endl;
+	std::cout << "\n\n charArr[2] = 'd' :\n\n";
+	charArr[2] = 'd';
 
-	// Copy constructor
-	Array<std::string> copyArray(stringArray);
+	for (unsigned int i = 0; i < 3; i++)
+		std::cout << "CharArr[" << i << "]	: " << charArr[i] << " |	";
+	
+	Array<char> 	charArrCopy(charArr);
 
-	// Modify a value in the copy
-	copyArray[1] = "String Data";
+	std::cout << "\n";
 
-	// Print elements of the copied array
-	for (unsigned int i = 0; i < copyArray.size(); i++) {
-		std::cout << copyArray[i] << " ";
-	}
-	std::cout << std::endl;
+	for (unsigned int i = 0; i < 3; i++)
+		std::cout << "CharArrCopy[" << i << "]	: " << charArrCopy[i] << " |	";
 
-	return 0;
+	std::cout << "\n\ncharArr[1] = 'c'\n";
+	charArr[1] = 'c';
+	std::cout << "charArrCopy[0] = 'Z'\n\n";
+	charArrCopy[0] = 'Z';
+
+	for (unsigned int i = 0; i < 3; i++)
+		std::cout << "CharArr[" << i << "]	: " << charArr[i] << " |	";
+
+	std::cout << "\n";
+
+	for (unsigned int i = 0; i < 3; i++)
+		std::cout << "CharArrCopy[" << i << "]	: " << charArrCopy[i] << " |	";
+
+	std::cout << "\n";
+
+	Array<std::string>	StringArr1(3);
+
+	StringArr1[0] = "salut";
+	StringArr1[1] = " les ";
+	StringArr1[2] = "copains !";
+
+	for (unsigned int i = 0; i < 3; i++)
+		std::cout << StringArr1[i];
+
+	std::cout << "\n Size of stringArr1: " << StringArr1.size();
+
+
+	return(0);
 }

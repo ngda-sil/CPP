@@ -1,25 +1,24 @@
 #ifndef ARRAY_HPP
-# define ARRAY_HPP
+#define ARRAY_HPP
 
+# include <stdexcept>
 
 template <typename T>
 class Array
 {
 	private:
-			T* _myArray;
-			unsigned int _n;
+			T*				_array;
+			unsigned int	_size;	
 	public:
-			Array(void);
-			Array(unsigned int n);
-			Array(const Array& rhs);
-			Array& operator=(const Array& rhs);
-			~Array(void);
+			Array();
+			Array(unsigned n);
+			Array(Array const & rhs);
+			Array& operator=(Array const & rhs);
+			~Array();
 
 			T& operator[](unsigned int index);
 
 			unsigned int size();
 };
-
-# include "Array.tpp"  
-
+# include "Array.tpp"
 #endif
