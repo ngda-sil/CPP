@@ -17,7 +17,7 @@ int ScalarConverter::detectType(std::string literal)
 	// float
 	if (literal.find_last_of("f") == literal.length() - 1)
 	{
-		if (!std::numeric_limits<double>::has_infinity) // inf case
+		if (d == std::numeric_limits<double>::infinity() && *pEnd == '\0')// inf case
 			return (DOUBLE);
 
 		literal.erase(literal.length() - 1);
@@ -67,8 +67,9 @@ template <typename T>
 void ScalarConverter::printFloat(T f)
 {
 	std::cout	<< "float: ";
-		if (f >= std::numeric_limits<float>::lowest() && f <= std::numeric_limits<float>::max())
-			std::cout << std::fixed << std::setprecision(1) << static_cast<float>(f) << "\n";
+		if ((f >= std::numeric_limits<float>::lowest() && f <= std::numeric_limits<float>::max())
+				|| f != std::numeric_limits<double>::signaling_NaN())
+			std::cout << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f\n";
 		else
 			std::cout << "impossible\n";
 }
@@ -77,8 +78,9 @@ template <typename T>
 void ScalarConverter::printDouble(T d)
 {
 	std::cout	<< "double: ";
-		if (d >= std::numeric_limits<double>::lowest() && d <= std::numeric_limits<double>::max())
-			std::cout << d << "\n";
+		if ((d >= std::numeric_limits<double>::lowest() && d <= std::numeric_limits<double>::max())
+				|| d != std::numeric_limits<double>::signaling_NaN())
+			std::cout << std::fixed << std::setprecision(1) << static_cast<double>(d) << "\n";
 		else
 			std::cout << "impossible\n";
 }
@@ -112,18 +114,13 @@ void ScalarConverter::doubleConv(double d)
 {
 	printChar<double>(d);
 	printInt<double>(d);
-	printFloat<double>(d);																						//The reason for the difference in the numbers is that float uses fewer bits to represent the value, which means it has a limited range and precision. When you perform the conversion, the compiler truncates the extra bits of the double value to fit it into the float representation.
-	std::cout	<< "double: ";
-			if (d >= std::numeric_limits<double>::lowest() && d <= std::numeric_limits<double>::max())
-				std::cout << d << "\n";
-			else
-				std::cout << "impossible\n";
-	
-
+	printFloat<double>(d);												//The reason for the difference in the numbers is that float uses fewer bits to represent the value, which means it has a limited range and precision. 
+	printDouble<double>(d);												//When you perform the conversion, the compiler truncates the extra bits of the double value to fit it into the float representation.														
 }
 
 void ScalarConverter::convert(std::string literal)
 {
+
 	int	type;
 
 	type = detectType(literal);
