@@ -5,29 +5,23 @@
 # include <vector>
 # include <exception>
 # include <iostream>
-# include <cstdlib>
 # include <limits>
+# include <cstdlib>
 
-# define SIZE 10
+# define SIZE 1000
+
 class Span
 {
 	private:
 			const unsigned int	_N;
-			int					_shortSpan;
-			int					_longSpan;
 			std::vector<int>	_s;
-			
-			void sortSpan();
-			void minSpan(std::vector<int>::iterator n);
-			void maxSpan(int n);
-
 
 			Span();
 			Span(Span const & rhs);
 			Span& operator=(Span const & rhs);
 	public:
 			Span(unsigned int N);
-			virtual ~Span();
+			~Span();
 
 			void	addNumber(int n);
 
