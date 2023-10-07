@@ -6,6 +6,7 @@ Span::Span(unsigned int N) : _N(N) {}
 Span::~Span() {}
 
 //Member function public
+
 void Span::addNumber(int n)
 {
 	try 
@@ -57,12 +58,8 @@ unsigned int Span::longestSpan()
 	{
 		if (!_s.size() || _s.size() == 1)
 			throw std::length_error("shortestSpan	: Span too small");
-		
-		unsigned int res;
-
-		res = *std::max_element(_s.begin(), _s.end()) - *std::min_element(_s.begin(), _s.end()); 
-
-		return(res);
+		else
+			return(*std::max_element(_s.begin(), _s.end()) - *std::min_element(_s.begin(), _s.end()));
 	}
 	catch (std::exception &e) { std::cout << e.what() << std::endl;}
 	return (0);
