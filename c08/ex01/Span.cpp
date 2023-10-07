@@ -7,21 +7,36 @@ Span::~Span() {}
 
 //Member function public
 
+void Span::printSpan()
+{
+	for (std::vector<int>::iterator it = _s.begin(); it != _s.end(); it++)
+		std::cout << *it << " | ";
+	std::cout << std::endl;
+}
+
 void Span::addNumber(int n)
 {
 	try 
 	{
-		if (_s.size() > _N)
+		if (_s.size() >= _N)
 			throw std::length_error("Span is full");
 		_s.push_back(n);
 	}
-	catch (std::exception &e) 
-	{ 
-		/*std::cout << e.what() << " : ";
-		for (std::vector<int>::iterator it = _s.begin(); it != _s.end(); it++)
-			std::cout << *it << " | ";	
-		std::cout << std::endl;*/
+	catch (std::exception &e) { std::cout << e.what() << std::endl;}
+}
+
+void Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last)
+{
+	try 
+	{
+		for (std::vector<int>::iterator i = first; i < last; i++)
+		{
+			if (_s.size() >= _N)
+				throw std::length_error("Span is full it: ");
+			_s.push_back(*i);
+		}
 	}
+	catch (std::exception &e) {std::cout << e.what() << std::endl;}
 
 }
 

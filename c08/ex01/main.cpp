@@ -15,7 +15,7 @@ int main ()
 	sp.shortestSpan();
 
 	//Span full error
-	for (int i = 0; i < SIZE + 1; i++)
+	for (int i = 1; i < SIZE + 1 ; i++)
 		sp.addNumber(rand() % 10);
 
 	std::cout << "longestSpan : " << sp.longestSpan() << std::endl;
@@ -31,9 +31,14 @@ int main ()
 	a.push_back(-122);
 	a.push_back(55);
 
-	Span sp2(2);
+	Span sp2(50);
 
+	sp2.addNumber(55);
 	sp2.addNumber(a.begin(), a.begin() + 5);
+	sp2.addNumber(15);
+
+
+	sp2.printSpan();
 
 	std::cout << "shortestSpan : " << sp2.shortestSpan() << std::endl;
 	std::cout << "longestSpan : " << sp2.longestSpan() << std::endl;
