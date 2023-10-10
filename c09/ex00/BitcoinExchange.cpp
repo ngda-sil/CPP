@@ -1,40 +1,51 @@
 #include "BitcoinExchange.hpp"
 
-//canonical
-BitcoinExchange::BitcoinExchange() {}
-
-BitcoinExchange::BitcoinExchange(BitcoinExchange const & rhs)
-{
-	if (this != &rhs)
-	{
-		
-	}
-}
-
-BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const & rhs)
-{
-	if (this != &rhs)
-	{
-
-	}
-	return (*this);
-}
-
-BitcoinExchange::~BitcoinExchange() {}
-
 //Public member function
 
-void BitcoinExchange::exchange(char* fileName)
-{
-	_ifs.open(fileName);
+void BitcoinExchange::exchange(char* dataBase, char* input)
+{	
+	std::ifstream ifsDataBase(dataBase);
+	std::ifstream ifsInput(input);
+	std::map<std::string, float>  data;
 
-	if (_ifs.fail())
-		return (printError(strerror(errno), 0).        );
-	
-	for (std::string line; getline(_ifs, line);)
+	if (ifsDataBase.fail() || ifsInput.fail())
 	{
-		line.
+		std::cerr << "Error : " << strerror(errno);
+		return;
 	}
+	// extract data from data base
+	for (std::string line; getline(ifsDataBase, line);)
+	{
+		std::string date = line.substr(0, line.find("|") - 2);
+		std::istringstream iss(line.substr(line.find("|") + 2, std::string::npos));
+		float rate;
+		iss >> rate;
+		//std::cout << line << std::endl;
+		//std::cout << "Date : " << date << " rate : " << rate << std::endl;
+		data.insert(std::pair<std::string, float> (date, rate));
+	}
+	// convert from input and print
+	for (std::string line; getline(ifsInput, line);)
+	{
+		std::string date = line.substr(0, line.find("|") - 2);
+		std::istringstream iss(line.substr(line.find("|") + 2, std::string::npos));
+		float rate;
+		iss >> rate;
+		// error management
+		if (rate < 0)
+		{
+			std::cerr << "Error : not a positive number" << std::endl;
+			continue; 
+		}
+		if (rate > 1000)
+		{
+			std::cerr << "Error : number > 1000" << std::endl;
+			continue;
+		}
+			
+	}
+
+
 
 }
 

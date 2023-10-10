@@ -4,20 +4,21 @@
 # include <map>
 # include <iostream>
 # include <fstream>
+# include <sstream>
 # include <cstdio>
+# include <string>
+#include <time.h> 
 
 class BitcoinExchange
 {
 	private:
-			static std::ifstream _ifs;
-	
-	public:
 			BitcoinExchange();
 			BitcoinExchange(BitcoinExchange const & rhs);
 			BitcoinExchange& operator=(BitcoinExchange const & rhs);
 			~BitcoinExchange();
 
-			static  void exchange(char* fileName);
+	public:
+			static  void exchange(char* dataBase, char* input);
 
 };
 
