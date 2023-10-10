@@ -22,19 +22,13 @@ int main ()
 	std::cout << "shortestSpan : " << sp.shortestSpan() << std::endl;
 	//std::cout << "shortestSpan : " << sp.shortestSpan() << std::endl;
 
-	std::vector<int> a;
-	a.push_back(12);
-	a.push_back(1);
-	a.push_back(-42);
-	a.push_back(42);
-	a.push_back(3);
-	a.push_back(-122);
-	a.push_back(55);
+	int a[] = {12, 1, -42, 42, 3, -122, 55};
+	std::vector<int> v(a, a + sizeof(a) / sizeof(int));
 
 	Span sp2(50);
 
 	sp2.addNumber(55);
-	sp2.addNumber(a.begin(), a.begin() + 5);
+	sp2.addNumber(v.begin(), v.begin() + 5);
 	sp2.addNumber(15);
 
 
