@@ -16,7 +16,7 @@ void BitcoinExchange::exchange(char* dataBase, char* input)
 	// extract data from data base
 	for (std::string line; getline(ifsDataBase, line);)
 	{
-		std::string date = line.substr(0, line.find("|") - 2);
+		std::string date = line.substr(0, line.find("|") - 1);
 		std::istringstream iss(line.substr(line.find("|") + 2, std::string::npos));
 		float rate;
 		iss >> rate;
@@ -27,7 +27,7 @@ void BitcoinExchange::exchange(char* dataBase, char* input)
 	// convert from input and print
 	for (std::string line; getline(ifsInput, line);)
 	{
-		std::string date = line.substr(0, line.find("|") - 2);
+		std::istringstream isd(line.substr(0, line.find("|") - 1));
 		std::istringstream iss(line.substr(line.find("|") + 2, std::string::npos));
 		float rate;
 		iss >> rate;
@@ -39,10 +39,26 @@ void BitcoinExchange::exchange(char* dataBase, char* input)
 		}
 		if (rate > 1000)
 		{
-			std::cerr << "Error : number > 1000" << std::endl;
+			std::cerr << "Error : too large a number" << std::endl;
 			continue;
 		}
-			
+		
+		struct tm tp;
+		if (!strptime(line.substr(0, line.find("|") - 1).c_str(), "%Y-%m-%d", &tp))
+			std::cout << "Error : bad input => " << isd.str() << std::endl;
+
+		else
+		{ 
+			if (data.find(isd.str())->second)
+				std::cout << isd.str() << " => " << data.find(isd.str())->second * rate << std::endl;
+			else
+			{
+				
+				std::map<std::string, float>::iterator it = data.lower_bound(isd.str());
+				it--;
+				//std::cout << isd.str() << " => " << data.find(isd.str())->second * it->second << std::endl;			
+			}
+		}
 	}
 
 

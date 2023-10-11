@@ -7,7 +7,9 @@
 # include <sstream>
 # include <cstdio>
 # include <string>
-#include <time.h> 
+#include <ctime> 
+#include <stdio.h>
+#include <iomanip>
 
 class BitcoinExchange
 {
