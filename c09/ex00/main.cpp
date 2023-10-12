@@ -4,7 +4,10 @@
 int main(int ac, char **av)
 {
 	if (ac != 3)
-		return(printError("Usage : ./btc <data base> <input>", 1));
+	{
+		std::cerr << "Error : Usage : ./btc <data base> <input>" << std::endl;
+		return (1);
+	}
 
 	BitcoinExchange::exchange(av[1], av[2]);
 
