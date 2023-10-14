@@ -3,6 +3,9 @@
 
 # include <stack>
 # include <iostream>
+# include <sstream>
+# include <cstdio>
+
 class RPN
 {
 	private :
@@ -10,9 +13,13 @@ class RPN
 			RPN(RPN const & rhs);
 			RPN& operator=(RPN const & rhs);
 			~RPN();
-	
-	public :
 			
+			static std::stack<float> _s;
+
+			static void operation(char token);
+
+	public :
+			static void calculation(std::string expression);
 
 };
 

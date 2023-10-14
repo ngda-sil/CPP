@@ -9,7 +9,7 @@ int main(int ac, char **av)
 		return (1);
 	}
 
-	RNP::calculation();
+	RPN::calculation(av[1]);
 	
 	return (0);
 }
