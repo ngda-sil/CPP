@@ -23,9 +23,9 @@ void PmergeMe::pairElements()
 		pairs.push_back(std::make_pair(*it++, *it2));
 	}
 	v.clear();
-	for (std::vector<std::pair<int, int > >::iterator it = pairs.begin(); it != pairs.end(); it++)
-		std::cout << it->first << " : " << it->second << std::endl;
-	std::cout << "--------------" << std::endl;
+	// for (std::vector<std::pair<int, int > >::iterator it = pairs.begin(); it != pairs.end(); it++)
+	// 	std::cout << it->first << " : " << it->second << std::endl;
+	// std::cout << "--------------" << std::endl;
 }
 
 void PmergeMe::sortPairs()
@@ -34,16 +34,10 @@ void PmergeMe::sortPairs()
 		if ((it->first < it->second) && (it->first != -1) && (it->second != -1))
 			std::swap(it->first, it->second);
 
-	std::sort(pairs.begin(), pairs.end());
-	if (pairs.begin()->first == -1)
-	{
-		pairs.push_back(std::make_pair(pairs.begin()->first, pairs.begin()->second));
-		pairs.erase(pairs.begin());
-	}
-	//std::reverse(pairs.begin(), pairs.end());
+	std::sort(pairs.begin(), pairs.end() - 1);
 
-	for (std::vector<std::pair<int, int > >::iterator it = pairs.begin(); it != pairs.end(); it++)
-		std::cout << it->first << " : " << it->second << std::endl;
+	// for (std::vector<std::pair<int, int > >::iterator it = pairs.begin(); it != pairs.end(); it++)
+	// 	std::cout << it->first << " : " << it->second << std::endl;
 }
 
 void PmergeMe::mergeLarger()
@@ -54,10 +48,10 @@ void PmergeMe::mergeLarger()
 			v.push_back(it->first);
 	}
 	v.insert(v.begin(), pairs.begin()->second);
-	std::cout << "Vector : ";
-	for(std::vector<int>::iterator it = v.begin(); it != v.end() ; it++)
-		std::cout << *it << " | ";
-	std::cout << std::endl;
+	// std::cout << "Vector : ";
+	// for(std::vector<int>::iterator it = v.begin(); it != v.end() ; it++)
+	// 	std::cout << *it << " | ";
+	// std::cout << std::endl;
 }
 
 void PmergeMe::mergeSmaller()
@@ -99,7 +93,7 @@ int	PmergeMe::parseElements(char** av)
 {
 	std::string 		values;
 	std::istringstream	iss;
-	int 		i;
+	int 				i;
 
 	// get values
 	for(int i = 1; av[i]; i++)
