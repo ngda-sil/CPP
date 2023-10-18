@@ -6,14 +6,24 @@
 # include <iostream>
 # include <sstream>
 # include <utility>
+# include <algorithm>
+# include <cmath>
+# include <ctime>
 
 class PmergeMe
 {
 	private :
 			std::vector<int>	v;
-			std::deque<int>	d;
+			std::deque<int>		d;
+			std::vector<std::pair<int, int > > pairs;
+			clock_t time;
+
 
 			void	pairElements();
+			void	sortPairs();
+			void 	mergeLarger();
+			void 	mergeSmaller();
+
 
 			PmergeMe(PmergeMe const & rhs);
 			PmergeMe& operator=(PmergeMe const & rhs);

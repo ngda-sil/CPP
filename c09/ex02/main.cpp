@@ -20,7 +20,7 @@ int main (int ac, char** av)
 		return(printError("Usage: ./PmergeMe <unsorted positive integer sequence>", 1));
 
 	if (fja.parseElements(av))
-		return(printError("Usage: ./PmergeMe <unsorted POSITIVE INTEGER sequence>", 1));
+		return(printError("Usage: ./PmergeMe <UNSORTED POSITIVE INTEGER sequence>", 1));
 	
 	fja.sort();
 
