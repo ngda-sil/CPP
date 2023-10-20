@@ -22,7 +22,8 @@ int main (int ac, char** av)
 	if (fja.parseElements(av))
 		return(printError("Usage: ./PmergeMe <UNSORTED POSITIVE INTEGER sequence>", 1));
 	
-	fja.sort();
+	fja.sort_vector();
+	fja.sort_deque();
 
 	return(0);
 }

@@ -10,19 +10,25 @@
 # include <cmath>
 # include <ctime>
 
+
 class PmergeMe
 {
 	private :
-			std::vector<int>	v;
-			std::deque<int>		d;
-			std::vector<std::pair<int, int > > pairs;
-			clock_t time;
+			std::vector<int>					v;
+			std::vector<std::pair<int, int > >	pairsVector;
+			
+			std::deque<int>						d;
+			std::deque<std::pair<int, int > >	pairsDeque;
 
+			void	pairElements_vector();
+			void	sortPairs_vector();
+			void 	mergeLarger_vector();
+			void 	mergeSmaller_vector();
 
-			void	pairElements();
-			void	sortPairs();
-			void 	mergeLarger();
-			void 	mergeSmaller();
+			void	pairElements_deque();
+			void	sortPairs_deque();
+			void 	mergeLarger_deque();
+			void 	mergeSmaller_deque();
 
 
 			PmergeMe(PmergeMe const & rhs);
@@ -34,7 +40,9 @@ class PmergeMe
 
 
 			int		parseElements(char** av);
-			void	sort();
+			void	sort_vector();
+			void	sort_deque();
+
 };
 
 int	printError(const std::string& msg, int i);
