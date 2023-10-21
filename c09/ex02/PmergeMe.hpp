@@ -1,35 +1,27 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
+# define GREEN "\033[32m"
+# define RESET "\033[0m"
+
+# include <sstream>
+# include <iostream>
 # include <vector>
 # include <deque>
-# include <iostream>
-# include <sstream>
-# include <utility>
-# include <algorithm>
-# include <cmath>
+# include <iomanip>
 # include <ctime>
-
+# include <utility>
 
 class PmergeMe
 {
 	private :
-			std::vector<int>					v;
-			std::vector<std::pair<int, int > >	pairsVector;
-			
-			std::deque<int>						d;
-			std::deque<std::pair<int, int > >	pairsDeque;
+			std::vector<int>			v;
+			std::vector<std::pair<int, int> > pairsVector;
 
 			void	pairElements_vector();
 			void	sortPairs_vector();
-			void 	mergeLarger_vector();
-			void 	mergeSmaller_vector();
 
-			void	pairElements_deque();
-			void	sortPairs_deque();
-			void 	mergeLarger_deque();
-			void 	mergeSmaller_deque();
-
+			std::deque<int>		d;
 
 			PmergeMe(PmergeMe const & rhs);
 			PmergeMe& operator=(PmergeMe const & rhs);
@@ -41,7 +33,7 @@ class PmergeMe
 
 			int		parseElements(char** av);
 			void	sort_vector();
-			void	sort_deque();
+			// void	sort_deque();
 
 };
 
