@@ -11,6 +11,9 @@
 # include <iomanip>
 # include <ctime>
 # include <utility>
+# include <cstddef>
+# include <iterator>
+# include <functional>
 
 class PmergeMe
 {
@@ -20,6 +23,11 @@ class PmergeMe
 
 			void	pairElements_vector();
 			void	sortPairs_vector();
+			void	mergeSort_vector(std::vector<std::pair<int, int> >::iterator begin, std::vector<std::pair<int, int> >::iterator end);
+			
+			void 	insertSmaller_vector();
+			void 	insertLarger_vector();
+			void	insertionSort_vector();
 
 			std::deque<int>		d;
 

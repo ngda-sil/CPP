@@ -41,21 +41,68 @@ void PmergeMe::sortPairs_vector()
 	std::cout << "--------------" << std::endl;
 }
 
-void PmergeMe::merge_sort_vector(std::vector<int>& arr, int left, int right)
+
+void PmergeMe::mergeSort_vector(std::vector<std::pair<int, int> >::iterator begin, std::vector<std::pair<int, int> >::iterator end)
 {
-	if (left < right)
+	//base case 
+	ptrdiff_t distance = std::distance(begin, end);
+	if (distance <= 1)
+		return;
+
+	std::vector<std::pair<int, int> >::iterator middle;
+	middle = begin + (distance / 2);
+
+	mergeSort_vector(begin, middle);
+	mergeSort_vector(middle, end);
+   std::inplace_merge(begin, middle, end);
+}
+
+void PmergeMe::insertSmaller_vector()
+{
+	int i = 0;
+	int newtmp;
+	int tmp = i - 1;
+	int j = 0;
+	int jacob = 0;
+	int size = pairsVector.size();
+
+	while (jacob < size)
 	{
-		if (right - left <= 5)
-			insertionSort(arr);
-		else
+		jacob = pow(2, j);
+		if (jacob >= size)
+			i = size - 1;
+		else 
 		{
-			int middle = left + (right - left) / 2;
-			merge_sort_vector(arr, left, middle);
-			merge_sort_vector(arr, middle + 1, right);
-			merge(arr, left, middle, right);
+			i = jacob;
 		}
+		newtmp = i;
+		while (i > tmp)
+		{
+			v.insert(std::lower_bound(v.begin(), v.end(), pairsVector[i].second), pairsVector[i].second);
+			i--;
+		}
+		tmp = newtmp;
+		j++;
+	}
+}
+
+void PmergeMe::insertLarger_vector()
+{
+	for (std::vector<std::pair<int, int > >::iterator it = pairsVector.begin(); it != pairsVector.end(); it++)
+	{
+		if (it->first != -1)
+			v.push_back(it->first);
 	}
 
+	for(std::vector<int>::iterator it = v.begin(); it != v.end() ; it++)
+		std::cout << *it << " | ";
+	std::cout << std::endl;
+}
+
+void PmergeMe::insertionSort_vector()
+{
+	insertLarger_vector();
+	insertSmaller_vector();
 }
 
 // Public Member Function
@@ -102,13 +149,24 @@ void PmergeMe::sort_vector()
 
 	pairElements_vector();
 	sortPairs_vector();
-	merge_sort_vector();
+	mergeSort_vector(pairsVector.begin(), pairsVector.end());
 
+	for (std::vector<std::pair<int, int > >::iterator it = pairsVector.begin(); it != pairsVector.end(); it++)
+		std::cout << it->first << " : " << it->second << std::endl;
+	std::cout << "--------------" << std::endl;
+
+	insertionSort_vector();
 	time = clock() - time;
 
 	if (std::is_sorted(v.begin(), v.end()) == true)
 		std::cout << GREEN << "Time to process a range of " << v.size() << " elements with std::vector : " 
 				<< std::fixed << (float)time / CLOCKS_PER_SEC << " sec" << RESET << std::endl;
+	
+	std::cout << "After : ";
+	for(std::vector<int>::iterator it = v.begin(); it != v.end() ; it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+
 	return;
 }
 
