@@ -15,21 +15,30 @@
 # include <iterator>
 # include <functional>
 
+typedef std::vector<int>::iterator itV;
+typedef std::deque<int>::iterator itD;
+typedef std::vector<std::pair<int, int> >::iterator itPairsV;
+typedef std::deque<std::pair<int, int> >::iterator itPairsD;
+
 class PmergeMe
 {
 	private :
-			std::vector<int>			v;
-			std::vector<std::pair<int, int> > pairsVector;
+			std::vector<int>					v;
+			std::vector<std::pair<int, int> >	pairsV;
 
-			void	pairElements_vector();
-			void	sortPairs_vector();
-			void	mergeSort_vector(std::vector<std::pair<int, int> >::iterator begin, std::vector<std::pair<int, int> >::iterator end);
-			
-			void 	insertSmaller_vector();
-			void 	insertLarger_vector();
-			void	insertionSort_vector();
+			void	pairsVector();
+			void	insertionSortVector();
+			void 	printVector(const std::string& comment);
 
-			std::deque<int>		d;
+			std::deque<int>						d;
+			std::deque<std::pair<int, int> >	pairsD;
+
+			void	pairsDeque();
+			void	insertionSortDeque();
+
+			template <typename iterator>
+			void	mergeSort(iterator begin, iterator end);
+
 
 			PmergeMe(PmergeMe const & rhs);
 			PmergeMe& operator=(PmergeMe const & rhs);
@@ -38,10 +47,10 @@ class PmergeMe
 			PmergeMe();
 			~PmergeMe();
 
-
+			int 	jacobsthal(int n);
 			int		parseElements(char** av);
-			void	sort_vector();
-			// void	sort_deque();
+			void	sortVector();
+			void	sortDeque();
 
 };
 

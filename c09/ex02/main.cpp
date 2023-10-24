@@ -10,9 +10,8 @@ int main(int ac, char **av)
 	if (fja.parseElements(av))
 		return (1);
 
-	fja.sort_vector();
-	// fja.sort_deque();
-	
+	fja.sortVector();
+	fja.sortDeque();
 	
 	return(0);
 }
