@@ -45,7 +45,7 @@ void RPN::calculation(std::string expression)
 			break;
 	}
 
-	if (_s.size() != 1)
+	if (_s.size() != 1 || (_s.size() == 1 && iss.eof() == false))
 		std::cerr << "Error : invalid input" << std::endl;
 	else
 		std::cout <<  _s.top() << std::endl;
