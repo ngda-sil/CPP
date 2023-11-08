@@ -23,7 +23,7 @@ class BitcoinExchange
 			static std::map<std::string, float>  _database;
 
 			static	void exctractData(char* file, int action);
-			static 	int errorManagement(float rate, std::string date, char* lastChar);
+			static 	int errorManagement(float rate, std::string date, char* lastChar, std::istringstream& fail);
 	public:
 			static	void exchange(char* databaseFile, char* inputFile);
 

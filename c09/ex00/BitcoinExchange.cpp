@@ -4,15 +4,17 @@ std::map<std::string, float>  BitcoinExchange::_database;															// forwa
 
 // Private member function
 
-int BitcoinExchange::errorManagement(float rate, std::string date, char* lastChar)
+int BitcoinExchange::errorManagement(float rate, std::string date, char* lastChar, std::istringstream& fail)
 {
 	std::string s;
 
-	if (rate < 0)
+	if (fail.fail() == 1 || fail.eof() == false)
+		s = "bad format";
+	else if (rate < 0)
 			s = "not a positive number";
 	else if (rate > 1000)
 			s = "too large a number";
-	else if (lastChar == NULL)
+	else if (lastChar == NULL || lastChar[0] != 0)
 			s = "bad input => " + date;
 	if (s.empty() == false)
 	{
@@ -50,14 +52,15 @@ void BitcoinExchange::exctractData(char* file, int action)
 		
 		if (action == CONVERT)
 		{
-			lastChar = strptime(date.c_str(), "%Y-%m-%d", &tp); 													// On successful completion, the strptime() function returns a pointer to the character following the last character parsed. Otherwise, a null pointer is returned.
-			if (errorManagement(rate, date, lastChar))
+			lastChar = strptime(date.c_str(), "%Y-%m-%d", &tp);													// On successful completion, the strptime() function returns a pointer to the character following the last character parsed. Otherwise, a null pointer is returned.
+			if (errorManagement(rate, date, lastChar, iss))
 				continue;
 			it = _database.find(date);
 			if (it == _database.end())
 			{
 				it = _database.lower_bound(date);
-				--it;
+				if (it != _database.begin())
+					--it;
 			}
 			std::cout << CYAN << date << " => " << std::fixed << std::setprecision(5) 
 				<< it->second * rate << RESET << std::endl;
