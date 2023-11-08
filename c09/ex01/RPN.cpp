@@ -31,22 +31,27 @@ void RPN::operation(char token)
 void RPN::calculation(std::string expression)
 {
 	std::istringstream iss(expression);
+	std::string n;
 
-	char n;
-	
-	while (iss >> n)
+	while (std::getline(iss, n, ' '))
 	{	
-		if ((n - '0' >= 0) && (n - '0' <= 9))
-			_s.push(n - '0');
-		else if((n == '+'|| n == '-' || n == '*' || n == '/')
+		if (n.size() == 1 && isdigit(n[0]))
+			_s.push(n[0] - '0');
+		else if((n == "+"|| n == "-" || n == "*" || n == "/")
 					&& (_s.size() >= 2))
-			operation(n);
+			operation(n[0]);
 		else
-			break;
+		{
+			std::cerr << "Error : invalid input" << std::endl;
+			exit (EXIT_FAILURE);
+		}
 	}
 
 	if (_s.size() != 1 || (_s.size() == 1 && iss.eof() == false))
+	{
 		std::cerr << "Error : invalid input" << std::endl;
+		exit (EXIT_FAILURE);
+	}
 	else
 		std::cout <<  _s.top() << std::endl;
 }
